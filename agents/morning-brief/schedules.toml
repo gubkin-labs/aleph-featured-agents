@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 8 * * *"
+markdown = "Deliver the morning brief. Read memory/preferences.md and memory/goals.md if present. Run the check-weather skill for the remembered city (default London). Use web_search for 3–5 headlines matching remembered topics (or general world + tech). Summarize weather, headlines, and one focus suggestion using the Response style in AGENTS.md."
+timezone = "UTC"

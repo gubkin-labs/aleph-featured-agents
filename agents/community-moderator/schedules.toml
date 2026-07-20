@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 17 * * *"
+markdown = "Daily moderation digest. Read memory/norms.md, memory/voice.md, and memory/patterns.md if present. Summarize recurring themes and open escalation items in short bullets. Ask whether any norms should be updated. If norms are empty, remind the owner to paste server rules in chat."
+timezone = "UTC"

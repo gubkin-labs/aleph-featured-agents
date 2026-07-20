@@ -1,0 +1,9 @@
+[[schedules]]
+cron = "0 9 * * 1-5"
+markdown = "Morning async standup prompt. Read memory/team.md if present. Ask the team for today's updates in three parts: shipped, blocked, next. Remind them to reply in this conversation or the connected channel. Initialize or clear memory/standup-today.md with today's UTC date header so replies can be appended."
+timezone = "UTC"
+
+[[schedules]]
+cron = "0 16 * * 1-5"
+markdown = "Afternoon standup digest. Read memory/standup-today.md and memory/team.md. Summarize shipped / blocked / next. Highlight blockers that need an owner. If no updates were recorded, say so. After summarizing, rewrite memory/standup-today.md to a short note that today's standup was summarized (include the date)."
+timezone = "UTC"

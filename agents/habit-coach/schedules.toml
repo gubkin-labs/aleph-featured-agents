@@ -1,0 +1,9 @@
+[[schedules]]
+cron = "0 9 * * *"
+markdown = "Morning habit check-in. Read memory/habits.md, memory/streaks.md, and memory/preferences.md. Nudge the user about today's habits using their preferred style. Ask a short yes/no or per-habit status question. If no habits are defined yet, ask them to name 1–3 habits."
+timezone = "UTC"
+
+[[schedules]]
+cron = "0 20 * * *"
+markdown = "Evening habit wrap-up. Read memory files. Ask what got done today. Update memory/streaks.md when the user confirms completions (or note that you are waiting on replies if this is a push-only turn). Keep it brief and encouraging."
+timezone = "UTC"

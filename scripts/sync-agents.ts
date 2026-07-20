@@ -268,6 +268,24 @@ const maybeConnectDiscord = async (agentId: string): Promise<void> => {
   console.log(`  Connected Discord for ${agentId}`);
 };
 
+const readAgentDisplayName = (
+  agentDir: string,
+  folderName: string
+): string => {
+  const readmePath = join(agentDir, "README.md");
+  if (!existsSync(readmePath)) {
+    return folderName;
+  }
+  const heading = readFileSync(readmePath, "utf8")
+    .split("\n")
+    .map((line) => line.trim())
+    .find((line) => line.startsWith("# "));
+  if (!heading) {
+    return folderName;
+  }
+  return heading.replace(/^#\s+/, "").trim() || folderName;
+};
+
 const readAgentDescription = (agentDir: string, folderName: string): string => {
   const readmePath = join(agentDir, "README.md");
   if (!existsSync(readmePath)) {
@@ -279,6 +297,24 @@ const readAgentDescription = (agentDir: string, folderName: string): string => {
     .filter(Boolean);
   const firstParagraph = lines.find((line) => !line.startsWith("#"));
   return firstParagraph ?? `Featured Aleph agent: ${folderName}`;
+};
+
+const updateAgentMetadata = async (
+  agentId: string,
+  name: string,
+  description: string
+): Promise<void> => {
+  const response = await apiFetch(`/agents/${agentId}`, {
+    body: JSON.stringify({ description, name }),
+    headers: jsonHeaders(),
+    method: "PATCH",
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to update agent ${agentId} (${response.status}): ${await readError(response)}`
+    );
+  }
 };
 
 const syncMessage = (): string => {
@@ -294,7 +330,9 @@ const syncAgent = async (
   cache: AgentCache
 ): Promise<void> => {
   const agentDir = join(AGENTS_DIR, folderName);
-  console.log(`\nSyncing agents/${folderName}`);
+  const displayName = readAgentDisplayName(agentDir, folderName);
+  const description = readAgentDescription(agentDir, folderName);
+  console.log(`\nSyncing agents/${folderName} → "${displayName}"`);
 
   let agentId: string | null = cache[folderName]?.agentId ?? null;
   let organizationId: string | null =
@@ -311,21 +349,23 @@ const syncAgent = async (
   }
 
   if (!agentId) {
-    const existing = await findAgentByName(folderName);
+    const existing =
+      (await findAgentByName(displayName)) ??
+      (await findAgentByName(folderName));
     if (existing) {
       agentId = existing.id;
       organizationId = existing.organizationId;
       console.log(`  Found existing agent ${agentId}`);
     } else {
-      const created = await createAgent(
-        folderName,
-        readAgentDescription(agentDir, folderName)
-      );
+      const created = await createAgent(displayName, description);
       agentId = created.id;
       organizationId = created.organizationId;
       console.log(`  Created agent ${agentId}`);
     }
   }
+
+  await updateAgentMetadata(agentId, displayName, description);
+  console.log(`  Metadata set to "${displayName}"`);
 
   const version = await uploadVersion(agentId, agentDir, syncMessage());
   console.log(`  Uploaded version ${version.id}`);

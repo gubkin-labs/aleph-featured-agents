@@ -26,14 +26,20 @@ User API keys publish personal agents. Organization API keys publish agents into
 
 ```text
 agents/
-  weather/                 # example featured agent
+  weather/                 # skill/script showcase
+  morning-brief/           # daily digest (individuals)
+  habit-coach/             # habit check-ins (individuals)
+  community-moderator/     # Discord/Telegram mod help (creators)
+  support-triage/          # customer reply drafts (SMB)
+  team-standup/           # async standup ritual (teams)
 scripts/
   sync-agents.ts           # create → upload → enable (+ optional Discord)
 .github/workflows/
   sync-agents.yml
+CATALOG.md                 # shipped list + ranked backlog
 ```
 
-Add a new agent by creating `agents/<name>/` with a valid Aleph bundle, then push.
+Add a new agent by creating `agents/<name>/` with a valid Aleph bundle, then push. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
 
 ## Agent bundle checklist
 
@@ -52,14 +58,18 @@ Do **not** include `memory/`, `conversations/`, root `manifest.json`, or `.agent
 
 Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels**, or set optional Discord secrets (below) so sync can call the Connect API after enable.
 
-## Weather agent
+## Featured agents (wave 1)
 
-`agents/weather` is a small showcase:
+| Folder | One-line promise |
+|--------|------------------|
+| `weather` | Current conditions via Open-Meteo (skill showcase) |
+| `morning-brief` | Daily weather + headlines + focus note |
+| `habit-coach` | Morning/evening habit check-ins with streaks |
+| `community-moderator` | Mod drafts + daily norms digest for communities |
+| `support-triage` | Categorize customer messages and draft replies |
+| `team-standup` | Weekday async standup prompt + afternoon digest |
 
-- Hourly schedule that asks for a short weather summary
-- `skills/check-weather` with an Open-Meteo script (no API key)
-- Session hooks via `scripts/prepare.sh`
-- Instructions that mention platform tools (`memory`, `web_search`) and Channels for Discord
+All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
 
 ## Optional Discord connect
 

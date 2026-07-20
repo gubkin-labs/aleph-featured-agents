@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 16 * * *"
+markdown = "Daily unresolved themes review. Read memory/open-items.md, memory/faq.md, and memory/product.md if present. Summarize open follow-ups in bullets. Suggest up to three FAQ entries worth adding. If open-items is empty, say so and invite the team to paste any stuck customer threads."
+timezone = "UTC"
