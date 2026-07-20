@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Habit Coach">
+  <rect width="128" height="128" rx="28" fill="#2D6A4F"/>
+  <path d="M36 68l18 18 38-44" fill="none" stroke="#D8F3DC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="96" cy="36" r="10" fill="#95D5B2"/>
+</svg>

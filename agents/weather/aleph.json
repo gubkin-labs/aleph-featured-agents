@@ -1,0 +1,5 @@
+{
+  "name": "Weather",
+  "description": "Current conditions and short forecasts via Open-Meteo — a small showcase of schedules, skills, and optional Discord delivery.",
+  "icon": "icon.svg"
+}

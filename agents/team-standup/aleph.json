@@ -1,0 +1,5 @@
+{
+  "name": "Team Standup Digest",
+  "description": "Async weekday standup: morning shipped/blocked/next prompt and afternoon digest for your team channel.",
+  "icon": "icon.svg"
+}
