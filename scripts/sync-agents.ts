@@ -15,7 +15,7 @@ const AGENTS_DIR = join(ROOT, "agents");
 const CACHE_DIR = join(ROOT, ".aleph");
 const CACHE_FILE = join(CACHE_DIR, "agents.json");
 
-const DEFAULT_API_URL = "https://www.api.aleph-agent.com";
+const DEFAULT_API_URL = "https://api.aleph-agent.com";
 
 type AgentCache = Record<string, { agentId: string; organizationId: string | null }>;
 
@@ -108,8 +108,13 @@ const apiFetch = async (
   path: string,
   init: RequestInit = {}
 ): Promise<Response> => {
-  const response = await fetch(`${apiUrl}${path}`, init);
-  return response;
+  const url = `${apiUrl}${path}`;
+  try {
+    return await fetch(url, init);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new Error(`Request to ${url} failed: ${detail}`);
+  }
 };
 
 const readError = async (response: Response): Promise<string> => {

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Public featured agents for the Aleph platform — sync agent folders to Aleph on every push.",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
     "node": ">=20"
   },
