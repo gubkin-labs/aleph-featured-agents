@@ -1,6 +1,6 @@
 # Aleph featured agents
 
-Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under `agents/` is an Aleph agent bundle. Pushing to `main` syncs every agent to the platform (create if missing, upload a new version, enable it).
+Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under `agents/` is an Aleph agent bundle. Pushing to `main` syncs every agent to the platform (create if missing, upload a new version, leave it **disabled** for clone-first discovery).
 
 ## Quick start
 
@@ -28,18 +28,18 @@ User API keys publish personal agents. Organization API keys publish agents into
 agents/
   weather/
     aleph.json             # catalog manifest: name, description, icon
-    icon.svg               # catalog image (synced to agent iconUrl)
+    cover.jpg              # catalog cover (synced to agent iconUrl via jsDelivr)
     AGENTS.md …
   morning-brief/
   …
 scripts/
-  sync-agents.ts           # create → metadata/icon → upload → enable
+  sync-agents.ts           # create → metadata/icon → upload → disable
 .github/workflows/
   sync-agents.yml
 CATALOG.md
 ```
 
-Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus** `aleph.json` (and usually `icon.svg`), then push. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
+Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus** `aleph.json` (and usually a cover image), then push. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
 
 ## Agent bundle checklist
 
@@ -54,7 +54,7 @@ Every agent folder must include:
 | `hooks.toml` | `sessionStart` / `sessionEnd` hooks |
 | `schedules.toml` | Cron schedules (minimum interval: 1 hour) |
 | `skills/` | Optional [Agent Skills](https://agentskills.io) |
-| `icon.svg` (or path in `aleph.json`) | Catalog image; sync sets `agents.iconUrl` via jsDelivr |
+| `cover.jpg` (or path in `aleph.json`) | Catalog cover photo; sync sets `agents.iconUrl` via jsDelivr |
 
 ### `aleph.json` example
 
@@ -62,17 +62,18 @@ Every agent folder must include:
 {
   "name": "Weather",
   "description": "Current conditions and short forecasts via Open-Meteo.",
-  "icon": "icon.svg"
+  "icon": "cover.jpg"
 }
 ```
 
-- `icon` — relative file inside the agent folder (excluded from the runtime bundle upload)
+- `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
+- Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
 
 Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, or `.agents/` — those paths are reserved by Aleph. Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
 
-Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels**, or set optional Discord secrets (below) so sync can call the Connect API after enable.
+Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels** after you clone and enable an agent.
 
 ## Featured agents (wave 1)
 
@@ -86,16 +87,6 @@ Channels (Discord / Telegram) are **not** bundle files. Connect them in the Alep
 | `team-standup` | Weekday async standup prompt + afternoon digest |
 
 All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
-
-## Optional Discord connect
-
-If all three secrets are set, sync connects Discord when the agent has no Discord binding yet:
-
-- `DISCORD_BOT_TOKEN`
-- `DISCORD_PUBLIC_KEY`
-- `DISCORD_APPLICATION_ID`
-
-You can also connect Discord from the agent’s Channels page in Aleph after the first sync.
 
 ## Cache
 

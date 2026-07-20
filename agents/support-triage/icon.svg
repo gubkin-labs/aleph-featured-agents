@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Support Triage">
-  <rect width="128" height="128" rx="28" fill="#9B2226"/>
-  <rect x="28" y="30" width="72" height="52" rx="12" fill="#EE9B00"/>
-  <path d="M48 82l16 18 16-18" fill="#EE9B00"/>
-  <circle cx="48" cy="52" r="6" fill="#FFF3B0"/>
-  <circle cx="64" cy="52" r="6" fill="#FFF3B0"/>
-  <circle cx="80" cy="52" r="6" fill="#FFF3B0"/>
-</svg>

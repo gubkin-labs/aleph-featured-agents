@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sync agent folders under agents/ to Aleph (create → metadata → version → enable).
+ * Sync agent folders under agents/ to Aleph (create → metadata → version → disable).
  *
  * Catalog metadata lives in agents/<folder>/aleph.json (not uploaded as a bundle file).
  * Platform root manifest.json remains reserved — do not add it to agent folders.
@@ -55,7 +55,7 @@ type VersionRecord = {
 type AgentCatalogManifest = {
   name: string;
   description: string;
-  /** Relative path under the agent folder, e.g. "icon.svg". */
+  /** Relative path under the agent folder, e.g. "cover.jpg". */
   icon?: string;
   /** Absolute URL override (skips GitHub/jsDelivr resolution). */
   iconUrl?: string;
@@ -294,63 +294,17 @@ const uploadVersion = async (
   return (await response.json()) as VersionRecord;
 };
 
-const enableAgent = async (agentId: string, versionId: string): Promise<void> => {
-  const response = await apiFetch(`/agents/${agentId}/enable`, {
-    body: JSON.stringify({ versionId }),
-    headers: jsonHeaders(),
+const disableAgent = async (agentId: string): Promise<void> => {
+  const response = await apiFetch(`/agents/${agentId}/disable`, {
+    headers: authHeaders(),
     method: "POST",
   });
 
   if (!response.ok) {
     throw new Error(
-      `Failed to enable agent ${agentId} (${response.status}): ${await readError(response)}`
+      `Failed to disable agent ${agentId} (${response.status}): ${await readError(response)}`
     );
   }
-};
-
-const maybeConnectDiscord = async (agentId: string): Promise<void> => {
-  const botToken = process.env.DISCORD_BOT_TOKEN?.trim();
-  const publicKey = process.env.DISCORD_PUBLIC_KEY?.trim();
-  const applicationId = process.env.DISCORD_APPLICATION_ID?.trim();
-
-  if (!(botToken && publicKey && applicationId)) {
-    return;
-  }
-
-  const listResponse = await apiFetch(`/agents/${agentId}/channels`, {
-    headers: authHeaders(),
-  });
-  if (!listResponse.ok) {
-    throw new Error(
-      `Failed to list channels for ${agentId} (${listResponse.status}): ${await readError(listResponse)}`
-    );
-  }
-
-  const channels = (await listResponse.json()) as Array<{ type?: string }>;
-  const hasDiscord = channels.some((binding) => binding.type === "discord");
-
-  if (hasDiscord) {
-    console.log(`  Discord already connected for ${agentId}`);
-    return;
-  }
-
-  const connectResponse = await apiFetch(`/agents/${agentId}/channels/discord`, {
-    body: JSON.stringify({
-      applicationId,
-      botToken,
-      publicKey,
-    }),
-    headers: jsonHeaders(),
-    method: "POST",
-  });
-
-  if (!connectResponse.ok) {
-    throw new Error(
-      `Failed to connect Discord for ${agentId} (${connectResponse.status}): ${await readError(connectResponse)}`
-    );
-  }
-
-  console.log(`  Connected Discord for ${agentId}`);
 };
 
 const readFallbackDisplayName = (
@@ -577,10 +531,9 @@ const syncAgent = async (
   );
   console.log(`  Uploaded version ${version.id}`);
 
-  await enableAgent(agentId, version.id);
-  console.log(`  Enabled at version ${version.id}`);
-
-  await maybeConnectDiscord(agentId);
+  // Featured catalog templates stay disabled — users clone then enable.
+  await disableAgent(agentId);
+  console.log(`  Disabled (catalog template; latest version ${version.id})`);
 
   cache[folderName] = { agentId, organizationId };
 };
