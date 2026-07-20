@@ -127,6 +127,31 @@ const readError = async (response: Response): Promise<string> => {
   }
 };
 
+const listPublicAgents = async (): Promise<AgentSummary[]> => {
+  const agents: AgentSummary[] = [];
+  let page = 1;
+  const pageSize = 100;
+
+  for (;;) {
+    const response = await apiFetch(
+      `/public-catalog/agents?page=${page}&pageSize=${pageSize}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Failed to list public catalog (${response.status}): ${await readError(response)}`
+      );
+    }
+    const body = (await response.json()) as AgentsPage;
+    agents.push(...body.data);
+    if (agents.length >= body.total || body.data.length === 0) {
+      break;
+    }
+    page += 1;
+  }
+
+  return agents;
+};
+
 const listAllAgents = async (): Promise<AgentSummary[]> => {
   const agents: AgentSummary[] = [];
   let page = 1;
@@ -154,8 +179,22 @@ const listAllAgents = async (): Promise<AgentSummary[]> => {
 };
 
 const findAgentByName = async (name: string): Promise<AgentSummary | null> => {
-  const agents = await listAllAgents();
-  return agents.find((agent) => agent.name === name) ?? null;
+  // Public catalog needs no auth and is enough for featured-agent re-sync.
+  const publicMatch = (await listPublicAgents()).find(
+    (agent) => agent.name === name
+  );
+  if (publicMatch) {
+    return publicMatch;
+  }
+
+  try {
+    const agents = await listAllAgents();
+    return agents.find((agent) => agent.name === name) ?? null;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.log(`  Authenticated agent list unavailable (${detail})`);
+    return null;
+  }
 };
 
 const createAgent = async (
