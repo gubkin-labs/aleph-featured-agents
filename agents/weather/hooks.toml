@@ -1,5 +1,5 @@
 [[hooks.sessionStart]]
-command = "./scripts/prepare.sh"
+command = "sh ./scripts/prepare.sh"
 visibility = "ui_and_agent"
 
 [[hooks.sessionEnd]]
