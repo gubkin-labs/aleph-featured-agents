@@ -41,12 +41,11 @@ Every agent folder must include:
 
 | Path | Role |
 |------|------|
-| `AGENTS.md` | Agent identity and instructions |
+| `AGENTS.md` | Agent identity, tone, and operating rules |
 | `README.md` | Human-facing documentation |
 | `sandbox.toml` | Runtime settings |
 | `hooks.toml` | `sessionStart` / `sessionEnd` hooks |
 | `schedules.toml` | Cron schedules (minimum interval: 1 hour) |
-| `rules/` | Optional behavioral rules |
 | `skills/` | Optional [Agent Skills](https://agentskills.io) |
 
 Do **not** include `memory/`, `conversations/`, root `manifest.json`, or `.agents/` — those paths are reserved by the platform.
