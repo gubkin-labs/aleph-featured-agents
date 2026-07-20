@@ -8,7 +8,7 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 2. Create a **user** or **organization** API key in Aleph (Settings → API keys).
 3. Add repository secrets:
    - `ALEPH_API_KEY` (required)
-   - `ALEPH_API_URL` (optional; defaults to `https://www.aleph-agent.com/backend`)
+   - `ALEPH_API_URL` (optional; defaults to `https://www.api.aleph-agent.com`)
 4. Push to `main`, or run the **Sync agents to Aleph** workflow manually.
 
 ### Local sync

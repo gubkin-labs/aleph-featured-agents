@@ -15,7 +15,7 @@ const AGENTS_DIR = join(ROOT, "agents");
 const CACHE_DIR = join(ROOT, ".aleph");
 const CACHE_FILE = join(CACHE_DIR, "agents.json");
 
-const DEFAULT_API_URL = "https://www.aleph-agent.com/backend";
+const DEFAULT_API_URL = "https://www.api.aleph-agent.com";
 
 type AgentCache = Record<string, { agentId: string; organizationId: string | null }>;
 
