@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 * * * *"
+markdown = "Check the weather for the default location (London if none is remembered). Summarize current conditions in a few sentences and mention if rain is likely in the next few hours."
+timezone = "UTC"

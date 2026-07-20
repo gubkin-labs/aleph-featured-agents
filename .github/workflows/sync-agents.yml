@@ -1,0 +1,32 @@
+name: Sync agents to Aleph
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install
+        run: npm install
+
+      - name: Sync agents
+        env:
+          ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
+          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
+          DISCORD_APPLICATION_ID: ${{ secrets.DISCORD_APPLICATION_ID }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: npm run sync

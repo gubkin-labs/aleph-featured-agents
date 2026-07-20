@@ -1,0 +1,7 @@
+[[hooks.sessionStart]]
+command = "./scripts/prepare.sh"
+visibility = "ui_and_agent"
+
+[[hooks.sessionEnd]]
+command = "printf '%s\\n' 'session_end: weather turn completed'"
+visibility = "ui"
