@@ -120,7 +120,10 @@ const apiFetch = async (
 const readError = async (response: Response): Promise<string> => {
   const text = await response.text();
   try {
-    const json = JSON.parse(text) as { message?: string };
+    const json = JSON.parse(text) as { message?: string; code?: string };
+    if (json.code === "RATE_LIMITED" || response.status === 429) {
+      return `${json.message ?? text} (HTTP ${response.status}; recreate or wait — API key rate limited)`;
+    }
     return json.message ?? text;
   } catch {
     return text || response.statusText;
