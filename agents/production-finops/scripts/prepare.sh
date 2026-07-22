@@ -25,7 +25,6 @@ install_npm_cli() {
 install_npm_cli vercel vercel
 install_npm_cli neonctl neon
 install_npm_cli @upstash/cli upstash
-install_npm_cli wrangler wrangler
 
 touch "${MARKER_FILE}"
 printf '%s\n' 'session_start: production-finops read-only reporting CLIs prepared'

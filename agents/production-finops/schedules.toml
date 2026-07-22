@@ -1,9 +1,9 @@
 [[schedules]]
 cron = "0 */4 * * *"
-markdown = "Run the four-hour Production FinOps anomaly check. Use only read-only provider/API queries for Vercel, Neon, Upstash, and Cloudflare R2. Compare bounded current usage and spend signals with the prior available report in memory. Report only anomalies, data gaps, and a read-only next check. Never mutate provider resources."
+markdown = "Run the four-hour Production FinOps anomaly check. Use only read-only provider/API queries for Vercel, Neon, and Upstash. Compare bounded current usage and spend signals with the prior available report in memory. Report only anomalies, data gaps, and a read-only next check. Never mutate provider resources."
 timezone = "UTC"
 
 [[schedules]]
 cron = "15 0 * * *"
-markdown = "Prepare the daily Production FinOps report for the preceding UTC day. Use only read-only provider/API queries. Break down estimated infrastructure cost by provider, service, and project/resource when data allows. Include Aleph billing API metrics for conversations created, turns created, and users at monthly-plan limits. Clearly label provider reporting lag, estimates, and missing data. Never mutate provider resources."
+markdown = "Prepare the daily Production FinOps report for the preceding UTC day. Use only read-only Vercel, Neon, and Upstash provider/API queries. Break down estimated infrastructure cost by provider, service, and project/resource when data allows. Include Aleph billing API metrics for conversations created, turns created, and users at monthly-plan limits. Clearly label provider reporting lag, estimates, and missing data. Never mutate provider resources."
 timezone = "UTC"

@@ -4,8 +4,8 @@
 infrastructure cost, usage, and platform demand.
 
 **What it does:** Every four hours it looks for billing and usage anomalies across
-Vercel, Neon, Upstash, and Cloudflare R2. Once a day it produces a provider and
-service breakdown together with Aleph conversation, turn, and plan-limit metrics.
+Vercel, Neon, and Upstash. Once a day it produces a provider and service
+breakdown together with Aleph conversation, turn, and plan-limit metrics.
 
 ## Set up after sync
 
@@ -13,7 +13,7 @@ service breakdown together with Aleph conversation, turn, and plan-limit metrics
    organization scope.
 2. Add the provider credentials and dedicated Aleph billing key to that scope's vault:
    `VERCEL_TOKEN`, `NEON_API_KEY`, `UPSTASH_EMAIL`, `UPSTASH_API_KEY`, and
-   `CLOUDFLARE_API_TOKEN`, plus `ALEPH_API_KEY`.
+   `ALEPH_API_KEY`.
 3. Ensure each token is restricted to read-only billing, usage, analytics, and
    resource-list permissions. Do not grant deployment, database, cache, storage,
    or account-management write permissions.
