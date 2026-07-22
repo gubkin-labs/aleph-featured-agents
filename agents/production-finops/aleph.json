@@ -1,0 +1,5 @@
+{
+  "name": "Production FinOps",
+  "description": "Read-only production cost and usage oversight for Vercel, Neon, Upstash, and Cloudflare R2, with four-hour anomaly checks and a daily operating-cost report.",
+  "visibility": "private"
+}

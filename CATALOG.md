@@ -1,6 +1,6 @@
 # Featured agents catalog
 
-Public agents in this repo sync to Aleph as `visibility: public`.
+Agents in this repo sync to Aleph as `visibility: public` by default. An operational template may set `visibility: private` in `aleph.json` while its source remains public.
 
 ## Shipped (wave 1)
 

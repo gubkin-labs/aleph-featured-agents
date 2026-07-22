@@ -1,0 +1,7 @@
+[[hooks.sessionStart]]
+command = "sh ./scripts/prepare.sh"
+visibility = "ui_and_agent"
+
+[[hooks.sessionEnd]]
+command = "printf '%s\\n' 'session_end: production-finops read-only reporting turn completed'"
+visibility = "ui"

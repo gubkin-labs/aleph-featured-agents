@@ -55,6 +55,8 @@ type VersionRecord = {
 type AgentCatalogManifest = {
   name: string;
   description: string;
+  /** Defaults to public; private agents remain repository-visible only. */
+  visibility?: "private" | "public";
   /** Relative path under the agent folder, e.g. "cover.jpg". */
   icon?: string;
   /** Absolute URL override (skips GitHub/jsDelivr resolution). */
@@ -243,14 +245,15 @@ const findAgentByName = async (name: string): Promise<AgentSummary | null> => {
 const createAgent = async (
   name: string,
   description: string,
-  iconUrl: string | null
+  iconUrl: string | null,
+  visibility: "private" | "public"
 ): Promise<AgentSummary> => {
   const response = await apiFetch("/agents", {
     body: JSON.stringify({
       description,
       ...(iconUrl ? { iconUrl } : {}),
       name,
-      visibility: "public",
+      visibility,
     }),
     headers: jsonHeaders(),
     method: "POST",
@@ -381,6 +384,20 @@ const readCatalogManifest = (
     typeof record.iconUrl === "string" && record.iconUrl.trim()
       ? record.iconUrl.trim()
       : undefined;
+  const visibility =
+    record.visibility === "private" || record.visibility === "public"
+      ? record.visibility
+      : "public";
+
+  if (
+    record.visibility !== undefined &&
+    record.visibility !== "private" &&
+    record.visibility !== "public"
+  ) {
+    throw new Error(
+      `agents/${folderName}/${CATALOG_MANIFEST}: visibility must be \"private\" or \"public\"`
+    );
+  }
 
   if (icon?.includes("..") || icon?.startsWith("/")) {
     throw new Error(
@@ -407,7 +424,7 @@ const readCatalogManifest = (
     }
   }
 
-  return { description, icon, iconUrl, name };
+  return { description, icon, iconUrl, name, visibility };
 };
 
 const resolveIconUrl = (
@@ -438,13 +455,15 @@ const updateAgentMetadata = async (
   agentId: string,
   name: string,
   description: string,
-  iconUrl: string | null
+  iconUrl: string | null,
+  visibility: "private" | "public"
 ): Promise<void> => {
   const response = await apiFetch(`/agents/${agentId}`, {
     body: JSON.stringify({
       description,
       iconUrl,
       name,
+      visibility,
     }),
     headers: jsonHeaders(),
     method: "PATCH",
@@ -500,7 +519,8 @@ const syncAgent = async (
       const created = await createAgent(
         manifest.name,
         manifest.description,
-        iconUrl
+        iconUrl,
+        manifest.visibility ?? "public"
       );
       agentId = created.id;
       organizationId = created.organizationId;
@@ -512,7 +532,8 @@ const syncAgent = async (
     agentId,
     manifest.name,
     manifest.description,
-    iconUrl
+    iconUrl,
+    manifest.visibility ?? "public"
   );
   console.log(
     iconUrl

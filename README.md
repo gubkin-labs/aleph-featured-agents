@@ -20,14 +20,14 @@ pnpm install
 pnpm run sync
 ```
 
-User API keys publish personal agents. Organization API keys publish agents into that organization. Agents from this repo are created with `visibility: public`.
+User API keys publish personal agents. Organization API keys publish agents into that organization. Agents from this repo are created with `visibility: public` by default. Set `"visibility": "private"` in an individual `aleph.json` for an operational template whose source stays public but whose synced Aleph agent is private.
 
 ## Repository layout
 
 ```text
 agents/
   weather/
-    aleph.json             # catalog manifest: name, description, icon
+    aleph.json             # catalog manifest: name, description, icon, visibility
     cover.jpg              # catalog cover (synced to agent iconUrl via jsDelivr)
     AGENTS.md …
   morning-brief/
@@ -62,12 +62,14 @@ Every agent folder must include:
 {
   "name": "Weather",
   "description": "Current conditions and short forecasts via Open-Meteo.",
-  "icon": "cover.jpg"
+  "icon": "cover.jpg",
+  "visibility": "public"
 }
 ```
 
 - `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
+- `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
 
