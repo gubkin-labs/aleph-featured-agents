@@ -5,4 +5,4 @@ maxTurns = 30
 VERCEL_TOKEN = "{{secrets.VERCEL_TOKEN}}"
 NEON_API_KEY = "{{secrets.NEON_API_KEY}}"
 UPSTASH_EMAIL = "{{secrets.UPSTASH_EMAIL}}"
-UPSTASH_API_KEY = "{{secrets.UPSTASH_API_KEY}}"
+UPSTASH_TOKEN = "{{secrets.UPSTASH_TOKEN}}"
