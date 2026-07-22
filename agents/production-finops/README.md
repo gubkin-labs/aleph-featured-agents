@@ -1,26 +1,22 @@
 # Production FinOps
 
 **Who it is for:** Aleph operators who need a read-only view of production
-infrastructure cost, usage, and platform demand.
+infrastructure cost and usage.
 
 **What it does:** Every four hours it looks for billing and usage anomalies across
 Vercel, Neon, and Upstash. Once a day it produces a provider and service
-breakdown together with Aleph conversation, turn, and plan-limit metrics.
+breakdown.
 
 ## Set up after sync
 
 1. Keep the synced agent private and enable it only in the intended personal or
    organization scope.
-2. Add the provider credentials and dedicated Aleph billing key to that scope's vault:
-   `VERCEL_TOKEN`, `NEON_API_KEY`, `UPSTASH_EMAIL`, `UPSTASH_API_KEY`, and
-   `ALEPH_API_KEY`.
+2. Add the provider credentials to that scope's vault: `VERCEL_TOKEN`,
+   `NEON_API_KEY`, `UPSTASH_EMAIL`, and `UPSTASH_API_KEY`.
 3. Ensure each token is restricted to read-only billing, usage, analytics, and
    resource-list permissions. Do not grant deployment, database, cache, storage,
    or account-management write permissions.
-4. Add runtime variable `ALEPH_API_URL` (for example,
-   `https://api.aleph-agent.com`). The agent must use the billing API rather
-   than direct database credentials.
-5. Enable the agent, review the first report for account/project mapping, and
+4. Enable the agent, review the first report for account/project mapping, and
    optionally connect a private delivery channel in the Channels UI.
 
 ## Schedules
