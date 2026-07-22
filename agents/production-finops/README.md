@@ -12,7 +12,7 @@ breakdown.
 1. Keep the synced agent private and enable it only in the intended personal or
    organization scope.
 2. Add the provider credentials to that scope's vault: `VERCEL_TOKEN`,
-   `NEON_API_KEY`, `UPSTASH_EMAIL`, and `UPSTASH_API_KEY`.
+   `NEON_API_KEY`, `UPSTASH_EMAIL`, and `UPSTASH_TOKEN`.
 3. Ensure each token is restricted to read-only billing, usage, analytics, and
    resource-list permissions. Do not grant deployment, database, cache, storage,
    or account-management write permissions.

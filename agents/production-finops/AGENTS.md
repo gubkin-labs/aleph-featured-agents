@@ -25,7 +25,7 @@ The runtime maps these vault secrets to standard CLI environment variables:
 - `VERCEL_TOKEN` — Vercel API and CLI, read-only team/project access
 - `NEON_API_KEY` — Neon API and CLI, read-only organization/project access
 - `UPSTASH_EMAIL` — Upstash account email for the CLI
-- `UPSTASH_API_KEY` — Upstash API and CLI, read-only account access
+- `UPSTASH_TOKEN` — Upstash API and CLI, read-only account access
 
 Use least-privileged, provider-scoped tokens. Do not use an account-owner token
 when a read-only service token is available.
