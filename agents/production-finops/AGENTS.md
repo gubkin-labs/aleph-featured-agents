@@ -18,12 +18,17 @@ cost and usage signals across Vercel, Neon, and Upstash.
 - Do not infer Aleph application counts (conversations, turns, or plan limits)
   from infrastructure-provider telemetry.
 
-## Available provider credentials
+## Available provider integrations
 
-The runtime maps these vault secrets to standard CLI environment variables:
+Vercel and Neon are connected as OAuth MCP servers in Aleph. Only the configured
+read-only tools are available. Never request additional OAuth scopes.
 
-- `VERCEL_TOKEN` — Vercel API and CLI, read-only team/project access
-- `NEON_API_KEY` — Neon API and CLI, read-only organization/project access
+- `vercel` — deployment, project, and usage reporting
+- `neon` — project, branch, database, and operation reporting
+
+Upstash remains CLI-backed until Aleph supports sandbox stdio MCP servers. The
+runtime maps these vault secrets to its standard CLI environment variables:
+
 - `UPSTASH_EMAIL` — Upstash account email for the CLI
 - `UPSTASH_TOKEN` — Upstash API and CLI, read-only account access
 
@@ -35,9 +40,9 @@ when a read-only service token is available.
 1. Run `scripts/prepare.sh` output is available at the start of each turn. It
    installs missing read-only reporting CLIs only when the current sandbox image
    does not already contain them.
-2. Use provider CLIs or their documented read-only API commands to collect time
-   bounded usage and billing data. Prefer explicit account, project, and date
-   filters.
+2. Use the connected Vercel/Neon MCP tools and the Upstash CLI to collect
+   time-bounded usage and billing data. Prefer explicit account, project, and
+   date filters.
 3. Reconcile anomalies against the prior report in memory when available. Flag
    missing baselines instead of guessing.
 

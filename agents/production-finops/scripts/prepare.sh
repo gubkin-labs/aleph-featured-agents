@@ -22,8 +22,6 @@ install_npm_cli() {
 
 # These packages only add client tooling. The agent rules still prohibit all
 # state-changing commands, and provider tokens must be read-only.
-install_npm_cli vercel vercel
-install_npm_cli neonctl neon
 install_npm_cli @upstash/cli upstash
 
 touch "${MARKER_FILE}"

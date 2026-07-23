@@ -2,7 +2,5 @@
 maxTurns = 30
 
 [runtime.env]
-VERCEL_TOKEN = "{{secrets.VERCEL_TOKEN}}"
-NEON_API_KEY = "{{secrets.NEON_API_KEY}}"
 UPSTASH_EMAIL = "{{secrets.UPSTASH_EMAIL}}"
 UPSTASH_TOKEN = "{{secrets.UPSTASH_TOKEN}}"

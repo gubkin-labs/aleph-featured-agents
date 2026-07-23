@@ -11,8 +11,8 @@ breakdown.
 
 1. Keep the synced agent private and enable it only in the intended personal or
    organization scope.
-2. Add the provider credentials to that scope's vault: `VERCEL_TOKEN`,
-   `NEON_API_KEY`, `UPSTASH_EMAIL`, and `UPSTASH_TOKEN`.
+2. Connect the Vercel and Neon MCP servers from the agent settings page. Add
+   only `UPSTASH_EMAIL` and `UPSTASH_TOKEN` to that scope's vault.
 3. Ensure each token is restricted to read-only billing, usage, analytics, and
    resource-list permissions. Do not grant deployment, database, cache, storage,
    or account-management write permissions.
@@ -36,4 +36,4 @@ snapshot. The Aleph runtime currently decides sandbox lifecycle, so repeated
 installs will continue until that runtime launches this agent from a prepared
 snapshot or preserves a sandbox filesystem between turns.
 
-No secrets are committed to this bundle.
+No secrets or OAuth tokens are committed to this bundle.
