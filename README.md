@@ -91,9 +91,6 @@ Channels (Discord / Telegram) are **not** bundle files. Connect them in the Alep
 
 All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
 
-`x-engagement-scout` is the exception: it requires a read-only
-`X_BEARER_TOKEN` with recent-search access.
-
 ## Cache
 
 Local sync writes `.aleph/agents.json` (gitignored) so folder names map to agent IDs across runs. CI recreates the mapping by listing agents and matching names when the cache is empty.

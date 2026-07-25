@@ -14,13 +14,11 @@ X account.
 
 ## After cloning
 
-1. Add a read-only X API bearer token to the clone’s Aleph vault as
-   `X_BEARER_TOKEN`. The token needs recent-search access.
-2. Enable the agent.
-3. Optionally tell it your public voice, strong opinions, preferred topics,
+1. Enable the agent. No API key or paid X developer account is required.
+2. Optionally tell it your public voice, strong opinions, preferred topics,
    exclusions, and proof points it may safely mention. These are stored in the
    clone’s private memory, not in the public bundle.
-4. Optionally connect Discord under **Channels** and choose a Schedule channel
+3. Optionally connect Discord under **Channels** and choose a Schedule channel
    to receive each digest there.
 
 The bundled schedule is `0 */4 * * *` in UTC. Edit `schedules.toml` after
@@ -28,10 +26,10 @@ cloning if a different four-hour alignment is preferable.
 
 ## Discovery behavior
 
-The official X recent-search API is the primary source. If an authenticated API
-request fails during a turn, the agent falls back to Aleph’s web search. A
-missing `X_BEARER_TOKEN` prevents the turn from starting because Aleph resolves
-declared vault secrets before runtime.
+The agent uses Aleph’s built-in web search with several narrow topic queries
+aimed at canonical public X post links. Search-engine indexing can lag or omit
+posts, so the agent verifies available context and returns fewer than three
+rather than padding a digest with weak or unverifiable suggestions.
 
 The agent records presented tweet IDs, reply drafts, recent authors, and topic
 patterns in private memory so later digests avoid repetition. Tell it whether

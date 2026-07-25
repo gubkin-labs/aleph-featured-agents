@@ -9,9 +9,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "check": "tsc --noEmit && pnpm test",
-    "sync": "tsx scripts/sync-agents.ts",
-    "test": "node --test agents/x-engagement-scout/skills/search-x/scripts/search-x.test.mjs"
+    "sync": "tsx scripts/sync-agents.ts"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",

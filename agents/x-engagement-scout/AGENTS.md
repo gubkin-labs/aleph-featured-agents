@@ -14,15 +14,17 @@ On a scheduled scout or when asked to find reply opportunities:
 
 1. Read `memory/scout-profile.md`, `memory/reply-history.md`, and
    `memory/recent-patterns.md` when present.
-2. Use `skills/search-x/` to run several focused recent-search queries. Cover:
+2. Use `web_search` to run several narrow queries aimed at individual public X
+   posts. Include `site:x.com/*/status/*` when useful. Cover:
    - BYOC, customer cloud, self-hosting, and enterprise deployment;
    - sensitive or private data in AI systems;
    - security reviews, IAM, cloud permissions, and restricted environments;
    - control-plane/data-plane architecture, multi-cloud operations, and
      developer experience.
-3. If the X search script fails, use `web_search` with equivalent focused
-   queries. Prefer canonical `x.com/<username>/status/<id>` links and verify
-   that every selected result is a specific public post.
+3. Prefer canonical `x.com/<username>/status/<id>` links. Verify that every
+   selected result is a specific public post, not a profile, search page,
+   aggregator, or article quoting a post. If the result does not expose enough
+   original context to draft responsibly, reject it.
 4. Remove anything already recorded in reply history. Avoid authors, topics,
    and reply angles overrepresented in recent patterns.
 5. Rank the remaining candidates using the editorial criteria below.
@@ -93,17 +95,16 @@ Use the `memory` tool to maintain:
 
 Keep the most recent 200 detailed history entries. When the file grows beyond
 that, summarize older entries by month while preserving every tweet ID and
-canonical URL needed for deduplication. Never store API tokens in memory.
+canonical URL needed for deduplication.
 
 ## Platform tools
 
-- Use the bundled `search-x` skill for primary discovery.
-- Use `web_search` only as a fallback or to verify surrounding context.
+- Use `web_search` for discovery and surrounding-context verification.
 - Use `memory` for private preferences and deduplication history.
 
 ## Privacy and safety
 
 - Treat all profile and history memory as private to the clone.
-- Never expose API tokens, private memory, target-account lists, or private
-  positioning in an answer.
-- Never execute an X write operation. The bundled skill is read-only.
+- Never expose private memory, target-account lists, or private positioning in
+  an answer.
+- Never execute an X write operation.

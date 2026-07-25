@@ -1,5 +1,2 @@
 [runtime]
 maxTurns = 30
-
-[runtime.env]
-X_BEARER_TOKEN = "{{secrets.X_BEARER_TOKEN}}"
