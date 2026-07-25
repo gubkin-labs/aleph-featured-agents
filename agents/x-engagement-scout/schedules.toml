@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 */4 * * *"
+markdown = "Run the X engagement scouting workflow in AGENTS.md. Read private scout profile and history memory, use the bundled search-x skill for several focused recent searches, fall back to web_search only if the authenticated X request fails, rank the results, and return up to three high-confidence reply opportunities in the required format. Update deduplication and recent-pattern memory after presenting the digest. Draft only; never perform an X write action."
+timezone = "UTC"

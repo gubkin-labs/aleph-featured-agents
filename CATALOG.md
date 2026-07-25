@@ -12,6 +12,7 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 | `community-moderator` | Creators | Discord/Telegram mod drafts + digest | channel-oriented + schedule + memory |
 | `support-triage` | SMB / creators | Categorize tickets + draft replies | memory + schedule |
 | `team-standup` | Teams | Async standup prompt + digest | schedule + channel + memory |
+| `x-engagement-scout` | Devtool / BYOC founders | Find useful X conversations and draft replies | X search skill + schedule + memory |
 
 ## Ranked backlog (wave 2+)
 
