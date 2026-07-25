@@ -30,6 +30,9 @@ The agent uses Aleph’s built-in web search with several narrow topic queries
 aimed at canonical public X post links. Search-engine indexing can lag or omit
 posts, so the agent verifies available context and returns fewer than three
 rather than padding a digest with weak or unverifiable suggestions.
+Scheduled research is capped at five searches and may return one or two strong
+opportunities instead of timing out while trying to fill three slots. It does
+not narrate intermediate research progress on scheduled runs.
 
 The agent records presented tweet IDs, reply drafts, recent authors, and topic
 patterns in private memory so later digests avoid repetition. Tell it whether

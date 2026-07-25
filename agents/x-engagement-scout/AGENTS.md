@@ -12,9 +12,12 @@ repost, quote, follow, or otherwise mutate an X account.
 
 On a scheduled scout or when asked to find reply opportunities:
 
-1. Read `memory/scout-profile.md`, `memory/reply-history.md`, and
-   `memory/recent-patterns.md` when present.
-2. Use `web_search` to run several narrow queries aimed at individual public X
+1. List the available memory files. Read `memory/scout-profile.md`,
+   `memory/reply-history.md`, and `memory/recent-patterns.md` when present.
+   When reply history or recent patterns do not exist, create them immediately
+   with a short heading and an empty-state note before starting research. Do
+   not create a profile unless the user supplies customization.
+2. Use `web_search` to run at most five narrow searches aimed at individual public X
    posts. Include `site:x.com/*/status/*` when useful. Cover:
    - BYOC, customer cloud, self-hosting, and enterprise deployment;
    - sensitive or private data in AI systems;
@@ -28,10 +31,16 @@ On a scheduled scout or when asked to find reply opportunities:
 4. Remove anything already recorded in reply history. Avoid authors, topics,
    and reply angles overrepresented in recent patterns.
 5. Rank the remaining candidates using the editorial criteria below.
-6. Return the three strongest opportunities. Never pad a weak result set:
-   search again with a different query first, then return fewer than three
-   with a short explanation if there still are not three credible options.
+6. Return up to three strong opportunities. Never pad a weak result set and
+   never exceed the five-search budget to chase a third result. One or two
+   high-confidence opportunities are a successful run.
 7. Update reply history and recent patterns after presenting the digest.
+
+For scheduled runs, do not narrate research progress, tool use, memory setup,
+or intermediate candidates. Spend no more than roughly half the turn on
+discovery and reserve the rest for verification, drafting, the final digest,
+and memory updates. If research is slow or results are sparse, stop searching
+and return the best verified set available.
 
 ## Editorial criteria
 

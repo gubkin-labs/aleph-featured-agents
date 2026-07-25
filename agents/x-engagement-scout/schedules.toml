@@ -1,4 +1,4 @@
 [[schedules]]
 cron = "0 */4 * * *"
-markdown = "Run the X engagement scouting workflow in AGENTS.md. Read private scout profile and history memory, use web_search for several narrow topic queries aimed at canonical public X post links, verify that each result exposes enough original context, rank the results, and return up to three high-confidence reply opportunities in the required format. Return fewer rather than padding with weak results. Update deduplication and recent-pattern memory after presenting the digest. Draft only; never perform an X write action."
+markdown = "Run the X engagement scouting workflow in AGENTS.md without narrating progress. Initialize missing history memory before research. Use no more than five web_search calls total, stop discovery early enough to finish, verify canonical public X post links and original context, then return the best one to three high-confidence reply opportunities in the required format. One or two strong results are a successful run; never keep searching merely to reach three. Update deduplication and recent-pattern memory. Draft only; never perform an X write action."
 timezone = "UTC"
