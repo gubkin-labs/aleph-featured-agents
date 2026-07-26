@@ -9,11 +9,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "sync": "tsx scripts/sync-agents.ts"
+    "sync": "pnpm dlx @aleph-agent/cli@latest agents sync agents --no-enable"
   },
   "devDependencies": {
-    "@types/node": "^22.15.0",
-    "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }
 }

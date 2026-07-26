@@ -32,8 +32,7 @@ agents/
     AGENTS.md …
   morning-brief/
   …
-scripts/
-  sync-agents.ts           # create → metadata/icon → upload → disable
+Aleph CLI                  # create → metadata/icon → upload → disable
 .github/workflows/
   sync-agents.yml
 CATALOG.md
@@ -95,4 +94,6 @@ All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Chann
 
 ## Cache
 
-Local sync writes `.aleph/agents.json` (gitignored) so folder names map to agent IDs across runs. CI recreates the mapping by listing agents and matching names when the cache is empty.
+Local sync writes `.aleph/state.json` (gitignored) so bundle paths map to agent
+IDs per API origin. Add the returned `agentId` to each `aleph.json` when CI
+needs identity without persisted state; the CLI never guesses by display name.
