@@ -9,7 +9,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "sync": "pnpm dlx @aleph-agent/cli@latest agents sync agents --no-enable"
+    "sync": "pnpm dlx @gubkin-labs/aleph-cli@latest agents sync agents --no-enable"
   },
   "devDependencies": {
     "typescript": "^5.8.3"
