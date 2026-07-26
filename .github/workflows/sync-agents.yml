@@ -12,6 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Checkout Aleph CLI
+        uses: actions/checkout@v4
+        with:
+          repository: gubkin-labs/aleph-cli
+          path: .aleph-cli
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
@@ -23,6 +29,10 @@ jobs:
 
       - name: Install
         run: pnpm install --frozen-lockfile
+
+      - name: Build Aleph CLI
+        working-directory: .aleph-cli
+        run: pnpm install --frozen-lockfile && pnpm build
 
       - name: Restore Aleph agent IDs
         uses: actions/cache@v4
@@ -38,4 +48,4 @@ jobs:
           ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
-        run: pnpm run sync
+        run: node .aleph-cli/dist/cli.js agents sync agents --no-enable
