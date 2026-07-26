@@ -27,7 +27,7 @@ User API keys publish personal agents. Organization API keys publish agents into
 ```text
 agents/
   weather/
-    aleph.json             # catalog manifest: name, description, icon, visibility
+    aleph.json             # catalog manifest: name, description, labels, icon, visibility
     cover.jpg              # catalog cover (synced to agent iconUrl via jsDelivr)
     AGENTS.md …
   morning-brief/
@@ -47,7 +47,7 @@ Every agent folder must include:
 
 | Path | Role |
 |------|------|
-| `aleph.json` | Sync catalog manifest: `name`, `description`, optional `icon` / `iconUrl` |
+| `aleph.json` | Sync catalog manifest: `name`, `description`, optional `labels`, `icon` / `iconUrl` |
 | `AGENTS.md` | Agent identity, tone, and operating rules |
 | `README.md` | Human-facing documentation |
 | `sandbox.toml` | Runtime settings |
@@ -62,6 +62,7 @@ Every agent folder must include:
 {
   "name": "Weather",
   "description": "Current conditions and short forecasts via Open-Meteo.",
+  "labels": ["Lifestyle", "Research"],
   "icon": "cover.jpg",
   "visibility": "public"
 }
@@ -69,6 +70,7 @@ Every agent folder must include:
 
 - `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
+- `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, or `Productivity`
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace

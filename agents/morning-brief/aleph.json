@@ -1,5 +1,6 @@
 {
   "name": "Morning Brief",
   "description": "A proactive daily digest with weather, headlines on your topics, and one focus note — delivered on a schedule to chat or Discord/Telegram.",
+  "labels": ["Productivity", "Research", "Lifestyle"],
   "icon": "cover.jpg"
 }

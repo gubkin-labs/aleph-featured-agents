@@ -1,5 +1,6 @@
 {
   "name": "Community Moderator Lite",
   "description": "Draft fair Discord/Telegram moderation replies from your server norms, plus a daily digest of recurring themes.",
+  "labels": ["Production", "Productivity"],
   "icon": "cover.jpg"
 }

@@ -1,5 +1,6 @@
 {
   "name": "Support Triage",
   "description": "Turn messy customer messages into category, priority, and a brand-voice draft reply — with a daily open-items review.",
+  "labels": ["Sales", "Production", "Productivity"],
   "icon": "cover.jpg"
 }

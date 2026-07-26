@@ -1,6 +1,7 @@
 {
   "name": "X Engagement Scout",
   "description": "Finds three timely X conversations where a devtool or BYOC founder can add something useful, then drafts thoughtful replies for human review.",
+  "labels": ["Marketing", "Sales", "Research"],
   "icon": "cover.jpg",
   "visibility": "public"
 }

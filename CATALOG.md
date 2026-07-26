@@ -4,15 +4,15 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 
 ## Shipped (wave 1)
 
-| Folder | Audience | Promise | Aleph proof |
-|--------|----------|---------|-------------|
-| `weather` | Showcase | Current conditions via Open-Meteo skill | skill script + hourly schedule |
-| `morning-brief` | Individuals + showcase | Daily weather + headlines + focus | schedule + memory + skill + channel |
-| `habit-coach` | Individuals | Habit check-ins and streaks | schedule + memory |
-| `community-moderator` | Creators | Discord/Telegram mod drafts + digest | channel-oriented + schedule + memory |
-| `support-triage` | SMB / creators | Categorize tickets + draft replies | memory + schedule |
-| `team-standup` | Teams | Async standup prompt + digest | schedule + channel + memory |
-| `x-engagement-scout` | Devtool / BYOC founders | Find useful X conversations and draft replies | `web_search` + schedule + memory |
+| Folder | Audience | Labels | Promise | Aleph proof |
+|--------|----------|--------|---------|-------------|
+| `weather` | Showcase | Lifestyle, Research | Current conditions via Open-Meteo skill | skill script + hourly schedule |
+| `morning-brief` | Individuals + showcase | Productivity, Research, Lifestyle | Daily weather + headlines + focus | schedule + memory + skill + channel |
+| `habit-coach` | Individuals | Lifestyle, Productivity | Habit check-ins and streaks | schedule + memory |
+| `community-moderator` | Creators | Production, Productivity | Discord/Telegram mod drafts + digest | channel-oriented + schedule + memory |
+| `support-triage` | SMB / creators | Sales, Production, Productivity | Categorize tickets + draft replies | memory + schedule |
+| `team-standup` | Teams | Productivity, Production | Async standup prompt + digest | schedule + channel + memory |
+| `x-engagement-scout` | Devtool / BYOC founders | Marketing, Sales, Research | Find useful X conversations and draft replies | `web_search` + schedule + memory |
 
 ## Ranked backlog (wave 2+)
 
@@ -45,6 +45,6 @@ Do **not** queue for featured v1:
 
 ## Packaging checklist
 
-Every new `agents/<name>/` needs: `aleph.json` (name, description, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
+Every new `agents/<name>/` needs: `aleph.json` (name, description, up to three curated labels, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
 
 `aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. Synced agents stay **disabled**.

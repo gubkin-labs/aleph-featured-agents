@@ -55,6 +55,8 @@ type VersionRecord = {
 type AgentCatalogManifest = {
   name: string;
   description: string;
+  /** Up to three curated marketplace categories. */
+  labels?: string[];
   /** Defaults to public; private agents remain repository-visible only. */
   visibility?: "private" | "public";
   /** Relative path under the agent folder, e.g. "cover.jpg". */
@@ -246,12 +248,14 @@ const createAgent = async (
   name: string,
   description: string,
   iconUrl: string | null,
+  labels: string[],
   visibility: "private" | "public"
 ): Promise<AgentSummary> => {
   const response = await apiFetch("/agents", {
     body: JSON.stringify({
       description,
       ...(iconUrl ? { iconUrl } : {}),
+      labels,
       name,
       visibility,
     }),
@@ -388,6 +392,36 @@ const readCatalogManifest = (
     record.visibility === "private" || record.visibility === "public"
       ? record.visibility
       : "public";
+  const labels = record.labels ?? [];
+
+  if (
+    !Array.isArray(labels) ||
+    labels.some((label) => typeof label !== "string")
+  ) {
+    throw new Error(
+      `agents/${folderName}/${CATALOG_MANIFEST}: labels must be an array of category strings`
+    );
+  }
+
+  const allowedLabels = new Set([
+    "Marketing",
+    "Production",
+    "FinOps",
+    "Engineering",
+    "Sales",
+    "Research",
+    "Lifestyle",
+    "Productivity",
+  ]);
+  if (
+    labels.length > 3 ||
+    new Set(labels).size !== labels.length ||
+    labels.some((label) => !allowedLabels.has(label))
+  ) {
+    throw new Error(
+      `agents/${folderName}/${CATALOG_MANIFEST}: labels must contain up to three unique curated categories`
+    );
+  }
 
   if (
     record.visibility !== undefined &&
@@ -424,7 +458,7 @@ const readCatalogManifest = (
     }
   }
 
-  return { description, icon, iconUrl, name, visibility };
+  return { description, icon, iconUrl, labels, name, visibility };
 };
 
 const resolveIconUrl = (
@@ -456,12 +490,14 @@ const updateAgentMetadata = async (
   name: string,
   description: string,
   iconUrl: string | null,
+  labels: string[],
   visibility: "private" | "public"
 ): Promise<void> => {
   const response = await apiFetch(`/agents/${agentId}`, {
     body: JSON.stringify({
       description,
       iconUrl,
+      labels,
       name,
       visibility,
     }),
@@ -520,6 +556,7 @@ const syncAgent = async (
         manifest.name,
         manifest.description,
         iconUrl,
+        manifest.labels ?? [],
         manifest.visibility ?? "public"
       );
       agentId = created.id;
@@ -533,12 +570,13 @@ const syncAgent = async (
     manifest.name,
     manifest.description,
     iconUrl,
+    manifest.labels ?? [],
     manifest.visibility ?? "public"
   );
   console.log(
     iconUrl
-      ? `  Metadata set (name, description, icon)`
-      : `  Metadata set (name, description; no icon)`
+      ? `  Metadata set (name, description, labels, icon)`
+      : `  Metadata set (name, description, labels; no icon)`
   );
   if (iconUrl) {
     console.log(`  iconUrl: ${iconUrl}`);
