@@ -38,7 +38,7 @@ Aleph CLI                  # create → metadata/icon → upload → disable
 CATALOG.md
 ```
 
-Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus** `aleph.json` (and usually a cover image), then push. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
+Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus** `aleph.json` (and usually a cover image), then push. The `agents/` folders are the source of truth: removing a previously synchronized folder archives its catalog agent. If it was already absent on Aleph, sync prints a warning and continues. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
 
 ## Agent bundle checklist
 
