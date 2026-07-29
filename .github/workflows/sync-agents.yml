@@ -46,30 +46,7 @@ jobs:
           ALEPH_REPOS_TOKEN: ${{ secrets.ALEPH_REPOS_TOKEN }}
         run: |
           set -euo pipefail
-          entry_url="https://api.aleph-agent.com/me/vault/GH_TOKEN"
-          description="GitHub token used by the private Aleph CMO agent to read Aleph repos and open blog-post pull requests"
-
-          if curl --fail --silent --show-error \
-            --header "x-api-key: ${ALEPH_API_KEY}" \
-            "${entry_url}" >/dev/null; then
-            curl --fail --silent --show-error \
-              --request PATCH \
-              --header "content-type: application/json" \
-              --header "x-api-key: ${ALEPH_API_KEY}" \
-              --data "$(jq --null-input --compact-output \
-                --arg description "${description}" \
-                --arg value "${ALEPH_REPOS_TOKEN}" \
-                '{description: $description, value: $value}')" \
-              "${entry_url}" >/dev/null
-          else
-            curl --fail --silent --show-error \
-              --request POST \
-              --header "content-type: application/json" \
-              --header "x-api-key: ${ALEPH_API_KEY}" \
-              --data "$(jq --null-input --compact-output \
-                --arg description "${description}" \
-                --arg name 'GH_TOKEN' \
-                --arg value "${ALEPH_REPOS_TOKEN}" \
-                '{description: $description, name: $name, value: $value}')" \
-              "https://api.aleph-agent.com/me/vault" >/dev/null
-          fi
+          printf '%s' "${ALEPH_REPOS_TOKEN}" \
+            | pnpm dlx @gubkin-labs/aleph-cli@1.0.1 vault set GH_TOKEN \
+              --value-stdin \
+              --description "GitHub token used by the private Aleph CMO agent to read Aleph repos and open blog-post pull requests"
