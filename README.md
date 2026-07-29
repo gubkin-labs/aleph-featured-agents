@@ -9,6 +9,8 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 3. Add repository secrets:
    - `ALEPH_API_KEY` (required)
    - `ALEPH_API_URL` (optional; defaults to `https://api.aleph-agent.com`)
+   - `ALEPH_REPOS_TOKEN` (required for Aleph CMO when syncing with a personal
+     `ALEPH_API_KEY`; stored as `GH_TOKEN` without appearing in the bundle)
 4. Push to `main`, or run the **Sync agents to Aleph** workflow manually.
 
 ### Local sync
