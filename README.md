@@ -12,9 +12,9 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
    - `ALEPH_REPOS_TOKEN` (required for Aleph CMO when syncing with a personal
      `ALEPH_API_KEY`; stored as the Aleph vault value named `GH_TOKEN`, without
      appearing in the bundle)
-4. Add the repository variable `ALEPH_CMO_AGENT_ID` with the ID of the one
-   canonical Aleph CMO agent. The workflow injects it only while syncing, so
-   every run updates that agent instead of creating another one.
+4. Add the ID of the one canonical Aleph CMO agent as `agentId` in
+   `agents/aleph-cmo/aleph.json`. That bundle manifest is the source of truth,
+   so every run updates the same agent instead of creating another one.
 5. Push to `main`, or run the **Sync agents to Aleph** workflow manually.
 
 ### Local sync
@@ -103,5 +103,5 @@ All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Chann
 Local sync writes `.aleph/state.json` (gitignored) so bundle paths map to agent
 IDs per API origin. Add the returned `agentId` to each `aleph.json` when CI
 needs identity without persisted state; the CLI never guesses by display name.
-The featured workflow requires `ALEPH_CMO_AGENT_ID` for its private Aleph CMO
-source agent and saves cache state even when a later bundle fails.
+The featured workflow requires the private Aleph CMO bundle manifest to contain
+its canonical `agentId` and saves cache state even when a later bundle fails.

@@ -37,19 +37,13 @@ jobs:
           restore-keys: |
             aleph-state-${{ github.ref_name }}-
 
-      - name: Set Aleph CMO identity
-        env:
-          ALEPH_CMO_AGENT_ID: ${{ vars.ALEPH_CMO_AGENT_ID }}
+      - name: Verify Aleph CMO identity
         run: |
           set -euo pipefail
-          if [ -z "${ALEPH_CMO_AGENT_ID}" ]; then
-            echo "Set the ALEPH_CMO_AGENT_ID repository variable to the one canonical Aleph CMO agent ID before syncing." >&2
+          if ! jq -e '.agentId | type == "string" and length > 0' agents/aleph-cmo/aleph.json >/dev/null; then
+            echo "Set agents/aleph-cmo/aleph.json agentId to the one canonical Aleph CMO agent ID before syncing." >&2
             exit 1
           fi
-          jq --arg agent_id "${ALEPH_CMO_AGENT_ID}" \
-            '.agentId = $agent_id' agents/aleph-cmo/aleph.json \
-            > agents/aleph-cmo/aleph.json.tmp
-          mv agents/aleph-cmo/aleph.json.tmp agents/aleph-cmo/aleph.json
 
       - name: Sync agents
         env:
