@@ -51,13 +51,13 @@ jobs:
           restore-keys: |
             aleph-state-${{ github.ref_name }}-
 
-      - name: Verify Aleph CMO identity
+      - name: Verify agent identities
+        env:
+          ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
+          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
         run: |
           set -euo pipefail
-          if ! jq -e '.agentId | type == "string" and length > 0' agents/aleph-cmo/aleph.json >/dev/null; then
-            echo "Set agents/aleph-cmo/aleph.json agentId to the one canonical Aleph CMO agent ID before syncing." >&2
-            exit 1
-          fi
+          pnpm dlx @gubkin-labs/aleph-cli@latest agents sync agents --dry-run --no-enable
 
       - name: Sync agents
         env:

@@ -14,9 +14,8 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
      Aleph vault value named `GH_TOKEN`, without appearing in the bundle)
    - The workflow addresses that Vault by its stable organization slug,
      `aleph-featured-agents-org`.
-4. Add the ID of the one canonical Aleph CMO agent as `agentId` in
-   `agents/aleph-cmo/aleph.json`. That bundle manifest is the source of truth,
-   so every run updates the same agent instead of creating another one.
+4. Give every `aleph.json` a permanent UUID `agentId`. The manifest is the
+   source of truth: first sync creates that exact ID and later runs update it.
 5. Push to `main`, or run the **Sync agents to Aleph** workflow manually.
 
 ### Local sync
@@ -35,7 +34,7 @@ User API keys publish personal agents. Organization API keys publish agents into
 ```text
 agents/
   weather/
-    aleph.json             # catalog manifest: name, description, labels, icon, visibility
+    aleph.json             # identity + catalog metadata
     cover.jpg              # catalog cover (synced to agent iconUrl via jsDelivr)
     AGENTS.md …
   morning-brief/
@@ -46,7 +45,13 @@ Aleph CLI                  # create → metadata/icon → upload → disable
 CATALOG.md
 ```
 
-Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus** `aleph.json` (and usually a cover image), then push. The `agents/` folders are the source of truth: removing a previously synchronized folder archives its catalog agent. If it was already absent on Aleph, sync prints a warning and continues. See [CATALOG.md](CATALOG.md) for the ranked backlog and packaging rules.
+Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus**
+`aleph.json` (and usually a cover image), then push. `agentId` is required; if
+it is missing, the CLI prints a generated UUID and the exact field to add.
+The `agents/` folders are the source of truth: removing a previously
+synchronized folder archives its catalog agent. If it was already absent on
+Aleph, sync prints a warning and continues. See [CATALOG.md](CATALOG.md) for
+the ranked backlog and packaging rules.
 
 ## Agent bundle checklist
 
@@ -67,6 +72,7 @@ Every agent folder must include:
 
 ```json
 {
+  "agentId": "5c5b86cf-b0d6-4e30-a9a0-58292e3afd59",
   "name": "Weather",
   "description": "Current conditions and short forecasts via Open-Meteo.",
   "labels": ["Lifestyle", "Research"],
@@ -75,12 +81,15 @@ Every agent folder must include:
 }
 ```
 
+- `agentId` — required permanent UUID; sync creates or updates this exact agent and never falls back to display-name matching
 - `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
 - `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, `Productivity`, or `Trading`
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
+- An identical runtime bundle reuses the latest version; metadata-only changes
+  do not create a version
 
 Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, or `.agents/` — those paths are reserved by Aleph. Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
 
@@ -102,8 +111,6 @@ All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Chann
 
 ## Cache
 
-Local sync writes `.aleph/state.json` (gitignored) so bundle paths map to agent
-IDs per API origin. Add the returned `agentId` to each `aleph.json` when CI
-needs identity without persisted state; the CLI never guesses by display name.
-The featured workflow requires the private Aleph CMO bundle manifest to contain
-its canonical `agentId` and saves cache state even when a later bundle fails.
+Every manifest owns its agent identity. Local sync writes `.aleph/state.json`
+(gitignored) only so a later sync can archive an agent when its bundle folder
+is removed. Cache loss cannot change, discover, or replace an agent ID.
