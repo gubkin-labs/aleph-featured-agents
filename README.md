@@ -9,9 +9,9 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 3. Add repository secrets:
    - `ALEPH_API_KEY` (required)
    - `ALEPH_API_URL` (optional; defaults to `https://api.aleph-agent.com`)
-   - `ALEPH_REPOS_TOKEN` (required for Aleph CMO when syncing with a personal
-     `ALEPH_API_KEY`; stored as the Aleph vault value named `GH_TOKEN`, without
-     appearing in the bundle)
+   - `ALEPH_REPOS_TOKEN` (required for Aleph CMO; stored in the
+     featured-agent organization Vault as the
+     Aleph vault value named `GH_TOKEN`, without appearing in the bundle)
 4. Add the ID of the one canonical Aleph CMO agent as `agentId` in
    `agents/aleph-cmo/aleph.json`. That bundle manifest is the source of truth,
    so every run updates the same agent instead of creating another one.
