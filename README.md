@@ -88,8 +88,9 @@ Every agent folder must include:
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
-- An identical runtime bundle reuses the latest version; metadata-only changes
-  do not create a version
+- An identical runtime bundle and identical `aleph.json` metadata reuse the
+  latest version. Changing manifest metadata creates a version even when runtime
+  files are unchanged; changing only `agentId` does not
 
 Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, or `.agents/` — those paths are reserved by Aleph. Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
 
