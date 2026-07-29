@@ -1,0 +1,4 @@
+[[schedules]]
+cron = "0 12 * * *"
+markdown = "Run the Long-Term Stock Finder daily workflow in AGENTS.md. Read the research ledger and prior thesis records first, then use web_search to verify a small number of primary sources and current market context. Do not pad the output. Return BUY only when every required criterion and valuation margin are evidenced; otherwise return WATCH or PASS. Never personalize advice, recommend allocations, or execute trades. Include the required educational disclaimer, risks, and dated valuation basis. Update all relevant memory before the final report."
+timezone = "UTC"

@@ -1,0 +1,7 @@
+{
+  "name": "Aleph CMO",
+  "description": "Daily research-led content strategist for Aleph that opens at most one evidence-backed blog-post PR for human review.",
+  "labels": ["Marketing", "Research", "Productivity"],
+  "icon": "cover.png",
+  "visibility": "private"
+}

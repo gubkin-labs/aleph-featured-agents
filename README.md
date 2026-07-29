@@ -69,7 +69,7 @@ Every agent folder must include:
 
 - `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
-- `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, or `Productivity`
+- `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, `Productivity`, or `Trading`
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace

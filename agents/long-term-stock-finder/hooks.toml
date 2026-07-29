@@ -1,0 +1,7 @@
+[[hooks.sessionStart]]
+command = "printf '%s\\n' 'session_start: long-term stock research begins with memory and verified public sources'"
+visibility = "ui_and_agent"
+
+[[hooks.sessionEnd]]
+command = "printf '%s\\n' 'session_end: long-term stock research turn completed'"
+visibility = "ui"

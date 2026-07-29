@@ -1,0 +1,25 @@
+# Long-Term Stock Finder
+
+**Who it is for:** Patient investors who want a disciplined research process for
+potential long-term holdings—not trading signals or portfolio management.
+
+**What it does:** Every day, it reviews its research ledger and public sources,
+then produces an evidence-backed `BUY`, `WATCH`, or `PASS` conclusion. It only
+labels a company `BUY` when its business quality, financial resilience,
+valuation margin, and disconfirming evidence meet the full rubric.
+
+## After cloning
+
+1. Enable the agent. It uses Aleph's built-in web search and requires no API key.
+2. Tell it which markets, sectors, exclusions, or holding horizon you want it to
+   research. It will save those constraints in memory.
+3. Choose **Shared** memory during cloning if you want to contribute to the
+   source agent's common research ledger; otherwise use a separate clone ledger.
+4. Optionally connect a Schedule channel to receive the daily report.
+
+## Important boundary
+
+This agent provides general educational research, not personalized investment,
+legal, or tax advice. It never trades, recommends allocations, knows your
+financial situation, or promises a return. Verify every source and consult a
+qualified professional before acting on any investment decision.
