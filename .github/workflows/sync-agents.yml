@@ -28,6 +28,18 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Provision Aleph CMO repository token
+        env:
+          ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
+          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
+          GH_TOKEN: ${{ secrets.ALEPH_REPOS_TOKEN }}
+        run: |
+          set -euo pipefail
+          printf '%s' "${GH_TOKEN}" \
+            | pnpm dlx @gubkin-labs/aleph-cli@1.0.1 vault set GH_TOKEN \
+              --value-stdin \
+              --description "GitHub token used by the private Aleph CMO agent to read Aleph repos and open blog-post pull requests"
+
       - name: Restore Aleph agent IDs
         id: aleph-state
         uses: actions/cache/restore@v4
@@ -52,18 +64,6 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
         run: pnpm run sync
-
-      - name: Provision Aleph CMO repository token
-        env:
-          ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
-          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
-          GH_TOKEN: ${{ secrets.ALEPH_REPOS_TOKEN }}
-        run: |
-          set -euo pipefail
-          printf '%s' "${GH_TOKEN}" \
-            | pnpm dlx @gubkin-labs/aleph-cli@1.0.1 vault set GH_TOKEN \
-              --value-stdin \
-              --description "GitHub token used by the private Aleph CMO agent to read Aleph repos and open blog-post pull requests"
 
       - name: Save Aleph agent IDs
         if: always() && steps.aleph-state.outputs.cache-hit != 'true'
