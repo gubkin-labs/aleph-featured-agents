@@ -12,6 +12,8 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
    - `ALEPH_REPOS_TOKEN` (required for Aleph CMO; stored in the
      featured-agent organization Vault as the
      Aleph vault value named `GH_TOKEN`, without appearing in the bundle)
+   - The workflow addresses that Vault by its stable organization slug,
+     `aleph-featured-agents-org`.
 4. Add the ID of the one canonical Aleph CMO agent as `agentId` in
    `agents/aleph-cmo/aleph.json`. That bundle manifest is the source of truth,
    so every run updates the same agent instead of creating another one.

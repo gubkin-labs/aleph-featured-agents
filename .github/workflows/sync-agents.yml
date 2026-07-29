@@ -32,13 +32,13 @@ jobs:
         env:
           ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
           ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
-          ALEPH_ORGANIZATION_ID: Xh5KnqoyMCEgcDFwnS0ttK0n09kudJzm
+          ALEPH_ORGANIZATION: aleph-featured-agents-org
           GH_TOKEN: ${{ secrets.ALEPH_REPOS_TOKEN }}
         run: |
           set -euo pipefail
           printf '%s' "${GH_TOKEN}" \
             | pnpm dlx @gubkin-labs/aleph-cli@1.0.1 vault set GH_TOKEN \
-              --org "${ALEPH_ORGANIZATION_ID}" \
+              --org "${ALEPH_ORGANIZATION}" \
               --value-stdin \
               --description "GitHub token used by the private Aleph CMO agent to read Aleph repos and open blog-post pull requests"
 
