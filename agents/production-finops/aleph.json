@@ -3,5 +3,6 @@
   "name": "Production FinOps",
   "description": "Read-only production cost and usage oversight for Vercel, Neon, and Upstash, with four-hour anomaly checks and a daily operating-cost report.",
   "labels": ["FinOps", "Production", "Engineering"],
+  "icon": "cover.png",
   "visibility": "private"
 }
