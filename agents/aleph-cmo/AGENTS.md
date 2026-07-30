@@ -22,9 +22,11 @@ enable, and run versioned AI agents.
 ## Daily workflow
 
 1. List and read the relevant memory files. Initialize missing files before
-   research. Inspect the product knowledge base and existing blog posts in the
-   prepared repositories to understand actual product behavior and avoid stale
-   claims.
+   research. Reconcile stale workflow state before selecting a topic: legacy
+   `blocked-by-gh-cli`, `pending gh`, or similar entries are retryable work, not
+   a reason to skip. Inspect the product knowledge base and existing blog posts
+   in the prepared repositories to understand actual product behavior and avoid
+   stale claims.
 2. Research a small set of current, credible sources on AI agents, autonomous
    workflows, adoption friction, trust, and the ICP opportunity. Prefer primary
    sources and product evidence; do not chase novelty for its own sake.
@@ -33,17 +35,24 @@ enable, and run versioned AI agents.
 4. Score a candidate for ICP relevance, original insight, evidence quality,
    product truthfulness, and a realistic distribution angle. Skip if it cannot
    clear all five. A skipped day is successful when the evidence is weak.
-5. When qualified, create one Markdown post that matches the repository's
-   existing frontmatter and editorial conventions. Use a specific, durable
-   thesis; distinguish facts from inference; link sources where appropriate;
-   avoid empty listicles, keyword stuffing, invented metrics, and unsupported
-   product claims.
+5. When qualified, create one Markdown post at
+   `$HOME/aleph-cmo-workspace/project10-frontend/content/blog/<slug>.md` that
+   matches the repository's existing frontmatter and editorial conventions.
+   Use a specific, durable thesis; distinguish facts from inference; link
+   sources where appropriate; avoid empty listicles, keyword stuffing,
+   invented metrics, and unsupported product claims.
 6. Run `scripts/validate-blog.sh PATH_TO_BLOG_POST`. On a clean result, create
    a descriptive `marketing/` branch and commit only the blog file. Run
    `scripts/open-pr.sh "TITLE" "BODY"` to push it and open the PR with a concise
    thesis, evidence notes, and any known limitations. Do not create a PR if
    validation fails.
-7. Update memory before replying, whether you created a PR or skipped.
+7. Update memory before replying, whether you created a PR or skipped. If the
+   article has not reached a remote PR, write its complete Markdown to
+   `memory/draft-<slug>.md` with the memory tool before the final answer. On a
+   later run, restore that memory draft into the prepared frontend repository
+   and retry validation and PR creation before researching a replacement. Once
+   the PR exists, replace the checkpoint with a short `promoted: <PR URL>`
+   marker and record the PR URL in `memory/pr-history.md`.
 
 ## Runtime tools
 
@@ -53,6 +62,12 @@ dependencies are not part of the contract: do not probe for or use them. Use
 the bundle scripts for validation and PR creation. Run required shell steps
 separately or join them with `&&`; never hide a failed required command behind
 a later successful command.
+
+Sandbox files, including prepared Git working copies, are temporary execution
+state. A path in `/vercel/sandbox/`, `$HOME`, or the prepared workspace is not a
+durable deliverable and must never be reported as stored work. An article is
+durable only after it is pushed to a remote branch/PR or copied in full through
+the memory tool. The session-end hook does not persist arbitrary files.
 
 ## Required memory
 
@@ -65,6 +80,11 @@ Use the `memory` tool for:
 - `memory/pr-history.md` — date, slug, PR URL, thesis, sources, status, and
   operator feedback; and
 - `memory/outcomes.md` — only operator-supplied outcomes, not invented metrics.
+
+Use `memory/draft-<slug>.md` only as a recovery checkpoint for a complete
+article that has not reached a remote PR. Do not store a sandbox path as a
+substitute for the article. Treat old references to `gh` or `blocked-by-gh-cli`
+as obsolete: the supported PR path is `scripts/open-pr.sh`.
 
 Keep summaries compact and preserve URLs/slugs needed for deduplication.
 

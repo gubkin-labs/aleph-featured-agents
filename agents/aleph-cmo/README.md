@@ -25,6 +25,10 @@ deployed by the agent.
    its memory for later research.
 4. Optionally connect a private Discord Schedule channel for its daily report.
 
+Unpushed drafts are checkpointed in agent memory and retried on the next run.
+Files left only in the sandbox workspace are temporary and are never presented
+as durable output.
+
 ## Limits
 
 Vercel Web Analytics is intentionally not integrated in this version. The agent
