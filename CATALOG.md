@@ -49,4 +49,4 @@ Do **not** queue for featured v1:
 
 Every new `agents/<name>/` needs: `aleph.json` (name, description, up to three curated labels, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
 
-`aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. Synced agents stay **disabled**.
+`aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. New synced agents start **disabled**; existing agents keep their mode across syncs.

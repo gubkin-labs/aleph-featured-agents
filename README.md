@@ -1,6 +1,6 @@
 # Aleph featured agents
 
-Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under `agents/` is an Aleph agent bundle. Pushing to `main` syncs every agent to the platform (create if missing, upload a new version, leave it **disabled** for clone-first discovery).
+Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under `agents/` is an Aleph agent bundle. Pushing to `main` syncs every agent to the platform (create if missing, upload a new version). **New** agent folders are left **disabled** for clone-first discovery; existing agents keep their current enabled/disabled state (already-enabled agents are repinned to the new Git version).
 
 ## Quick start
 
@@ -91,7 +91,7 @@ Every agent folder must include:
 - `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, `Productivity`, or `Trading`
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
 - Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
-- Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
+- **New** synced agents start **disabled** — users clone from the catalog, then enable in their workspace. Existing agents keep their enabled/disabled state across syncs.
 - An identical runtime bundle and identical `aleph.json` metadata reuse the
   latest version. Changing manifest metadata creates a version even when runtime
   files are unchanged; changing only `agentId` or `versionId` does not
