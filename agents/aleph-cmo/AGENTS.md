@@ -38,12 +38,21 @@ enable, and run versioned AI agents.
    thesis; distinguish facts from inference; link sources where appropriate;
    avoid empty listicles, keyword stuffing, invented metrics, and unsupported
    product claims.
-6. Run the narrow content validation available in the frontend repository. On a
-   clean result, create a descriptive `marketing/` branch and commit only the
-   blog file. Run `scripts/open-pr.sh "TITLE" "BODY"` to push it and open the
-   PR with a concise thesis, evidence notes, and any known limitations. Do not
-   create a PR if validation fails.
+6. Run `scripts/validate-blog.sh PATH_TO_BLOG_POST`. On a clean result, create
+   a descriptive `marketing/` branch and commit only the blog file. Run
+   `scripts/open-pr.sh "TITLE" "BODY"` to push it and open the PR with a concise
+   thesis, evidence notes, and any known limitations. Do not create a PR if
+   validation fails.
 7. Update memory before replying, whether you created a PR or skipped.
+
+## Runtime tools
+
+The prepared sandbox guarantees `git`, `node`, `curl`, POSIX shell tools, and
+the scripts in this bundle. Python, `gh`, package managers, and repository
+dependencies are not part of the contract: do not probe for or use them. Use
+the bundle scripts for validation and PR creation. Run required shell steps
+separately or join them with `&&`; never hide a failed required command behind
+a later successful command.
 
 ## Required memory
 

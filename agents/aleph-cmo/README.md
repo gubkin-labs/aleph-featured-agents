@@ -18,7 +18,8 @@ deployed by the agent.
    into clones. It needs read access to `gubkin-labs/project10` and
    contents/pull-request write access only to `gubkin-labs/project10-frontend`.
    The bundle uses Git and GitHub's REST API directly; it does not require the
-   GitHub CLI in the sandbox.
+   GitHub CLI or Python in the sandbox. Its included validator runs on Node,
+   which is part of the agent runtime.
 3. Review the first scheduled report and every resulting PR. Add approved ICP,
    positioning, and proof-point details through chat; the agent records them in
    its memory for later research.

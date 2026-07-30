@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-repo="${HOME}/aleph-cmo-workspace/project10-frontend"
+repo="${ALEPH_CMO_WORKSPACE:-${HOME}/aleph-cmo-workspace}/project10-frontend"
 title="${1:?usage: open-pr.sh TITLE BODY}"
 body="${2:?usage: open-pr.sh TITLE BODY}"
 branch="$(git -C "$repo" branch --show-current)"
