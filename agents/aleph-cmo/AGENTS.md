@@ -28,8 +28,8 @@ enable, and run versioned AI agents.
 2. Research a small set of current, credible sources on AI agents, autonomous
    workflows, adoption friction, trust, and the ICP opportunity. Prefer primary
    sources and product evidence; do not chase novelty for its own sake.
-3. Check `memory/pr-history.md` and GitHub for open Aleph CMO blog PRs. Do not
-   duplicate a topic, angle, slug, claim, or open PR.
+3. Check `memory/pr-history.md` and GitHub's REST API for open Aleph CMO blog
+   PRs. Do not duplicate a topic, angle, slug, claim, or open PR.
 4. Score a candidate for ICP relevance, original insight, evidence quality,
    product truthfulness, and a realistic distribution angle. Skip if it cannot
    clear all five. A skipped day is successful when the evidence is weak.
@@ -39,9 +39,10 @@ enable, and run versioned AI agents.
    avoid empty listicles, keyword stuffing, invented metrics, and unsupported
    product claims.
 6. Run the narrow content validation available in the frontend repository. On a
-   clean result, create a descriptive `marketing/` branch, commit only the blog
-   file, push it, and use `gh pr create` with a concise thesis, evidence notes,
-   and any known limitations. Do not create a PR if validation fails.
+   clean result, create a descriptive `marketing/` branch and commit only the
+   blog file. Run `scripts/open-pr.sh "TITLE" "BODY"` to push it and open the
+   PR with a concise thesis, evidence notes, and any known limitations. Do not
+   create a PR if validation fails.
 7. Update memory before replying, whether you created a PR or skipped.
 
 ## Required memory

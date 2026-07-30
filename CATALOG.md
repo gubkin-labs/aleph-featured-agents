@@ -13,7 +13,7 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 | `support-triage` | SMB / creators | Sales, Production, Productivity | Categorize tickets + draft replies | memory + schedule |
 | `team-standup` | Teams | Productivity, Production | Async standup prompt + digest | schedule + channel + memory |
 | `x-engagement-scout` | Devtool / BYOC founders | Marketing, Sales, Research | Find useful X conversations and draft replies | `web_search` + schedule + memory |
-| `aleph-cmo` | Aleph operators | Marketing, Research, Productivity | Research differentiated AI-market content and open one reviewable blog-post PR | `web_search` + GitHub CLI + memory |
+| `aleph-cmo` | Aleph operators | Marketing, Research, Productivity | Research differentiated AI-market content and open one reviewable blog-post PR | `web_search` + Git/GitHub API + memory |
 | `long-term-stock-finder` | Patient long-term investors | Trading, Research | Evidence-backed BUY, WATCH, or PASS research with a durable thesis ledger | `web_search` + schedule + memory |
 
 ## Ranked backlog (wave 2+)

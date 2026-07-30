@@ -17,6 +17,8 @@ deployed by the agent.
    `ALEPH_REPOS_TOKEN` GitHub Actions secret, but Aleph never copies secrets
    into clones. It needs read access to `gubkin-labs/project10` and
    contents/pull-request write access only to `gubkin-labs/project10-frontend`.
+   The bundle uses Git and GitHub's REST API directly; it does not require the
+   GitHub CLI in the sandbox.
 3. Review the first scheduled report and every resulting PR. Add approved ICP,
    positioning, and proof-point details through chat; the agent records them in
    its memory for later research.
