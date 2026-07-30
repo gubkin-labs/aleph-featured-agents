@@ -1,13 +1,18 @@
 # X Engagement Scout
 
-**Who it’s for:** Devtool and BYOC founders who want to join relevant X
-conversations without turning every reply into a pitch.
+**Who it’s for:** Founders selling software that enterprises often need inside
+the customer’s own cloud — people who want to join **buyer-side** X
+conversations, not chase competing BYOC products.
 
-**What it does on a schedule:** Every four hours, it searches recent public X
-posts about customer-cloud deployment, enterprise AI and security, sensitive
-data, multi-cloud infrastructure, cloud permissions, and developer tooling. It
-returns up to three ranked opportunities with a link, context, suggested reply,
-and selection rationale.
+**What it does on a schedule:** Every four hours, it searches for public X
+posts from roughly the **last couple of days** where SaaS / AI / security /
+data vendors describe deployment pain: VPC or customer-account installs, data
+residency objections, airgapped asks, or the ops burden of maintaining
+self-hosted customer deployments. It returns up to three ranked opportunities
+with a link, context, suggested reply, and selection rationale.
+
+It deliberately avoids competitor landscape threads, peer product launches, and
+“BYOC tools” style queries.
 
 The agent drafts only. It cannot post, like, repost, quote, follow, or modify an
 X account.
@@ -26,13 +31,14 @@ cloning if a different four-hour alignment is preferable.
 
 ## Discovery behavior
 
-The agent uses Aleph’s built-in web search with several narrow topic queries
-aimed at canonical public X post links. Search-engine indexing can lag or omit
-posts, so the agent verifies available context and returns fewer than three
-rather than padding a digest with weak or unverifiable suggestions.
-Scheduled research is capped at five searches and may return one or two strong
-opportunities instead of timing out while trying to fill three slots. It does
-not narrate intermediate research progress on scheduled runs.
+The agent uses Aleph’s built-in web search with several narrow audience-pain
+queries aimed at canonical public X post links from the last ~48 hours.
+Search-engine indexing can lag or omit posts, so the agent verifies available
+context and returns fewer than three rather than padding a digest with weak,
+stale, or competitor-centric suggestions. Scheduled research is capped at five
+searches and may return one or two strong opportunities — or none — instead of
+timing out while trying to fill three slots. It does not narrate intermediate
+research progress on scheduled runs.
 
 The agent records presented tweet IDs, reply drafts, recent authors, and topic
 patterns in private memory so later digests avoid repetition. Tell it whether

@@ -1,7 +1,7 @@
 {
   "agentId": "f06658e0-f202-4d8b-8a68-a1e3f7937ef0",
   "name": "X Engagement Scout",
-  "description": "Finds three timely X conversations where a devtool or BYOC founder can add something useful, then drafts thoughtful replies for human review.",
+  "description": "Finds recent X posts from SaaS vendors hitting customer-cloud deployment pain and drafts useful, non-promotional replies for human review.",
   "labels": ["Marketing", "Sales", "Research"],
   "icon": "cover.jpg",
   "visibility": "public"

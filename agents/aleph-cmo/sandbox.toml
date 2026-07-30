@@ -1,5 +1,2 @@
-[runtime]
-maxTurns = 30
-
 [runtime.env]
 GH_TOKEN = "{{secrets.GH_TOKEN}}"

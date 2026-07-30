@@ -106,7 +106,7 @@ Channels (Discord / Telegram) are **not** bundle files. Connect them in the Alep
 | `community-moderator` | Mod drafts + daily norms digest for communities |
 | `support-triage` | Categorize customer messages and draft replies |
 | `team-standup` | Weekday async standup prompt + afternoon digest |
-| `x-engagement-scout` | Three timely X conversations + thoughtful reply drafts every four hours |
+| `x-engagement-scout` | Recent audience-side X posts + thoughtful reply drafts every four hours |
 
 All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
 
