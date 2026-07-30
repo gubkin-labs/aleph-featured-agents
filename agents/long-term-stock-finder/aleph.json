@@ -4,5 +4,6 @@
   "description": "Daily, evidence-backed long-term stock research with cautious BUY, WATCH, or PASS conclusions and a shared thesis ledger.",
   "labels": ["Trading", "Research"],
   "icon": "cover.png",
-  "visibility": "public"
+  "visibility": "public",
+  "versionId": "be4f8e00-2256-48ca-a704-a42cc8f899c9"
 }

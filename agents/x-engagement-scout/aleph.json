@@ -4,5 +4,6 @@
   "description": "Finds recent X posts from SaaS vendors hitting customer-cloud deployment pain and drafts useful, non-promotional replies for human review.",
   "labels": ["Marketing", "Sales", "Research"],
   "icon": "cover.jpg",
-  "visibility": "public"
+  "visibility": "public",
+  "versionId": "c9efcbc6-bde8-45c8-aa11-41840f76a52a"
 }

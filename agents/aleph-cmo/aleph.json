@@ -4,5 +4,6 @@
   "description": "Daily research-led content strategist for Aleph that opens at most one evidence-backed blog-post PR for human review.",
   "labels": ["Marketing", "Research", "Productivity"],
   "icon": "cover.png",
-  "visibility": "private"
+  "visibility": "private",
+  "versionId": "1c8d4072-97ed-4ab5-9911-061e65aad2d1"
 }

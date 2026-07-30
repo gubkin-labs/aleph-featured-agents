@@ -16,6 +16,8 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
      `aleph-featured-agents-org`.
 4. Give every `aleph.json` a permanent UUID `agentId`. The manifest is the
    source of truth: first sync creates that exact ID and later runs update it.
+   After the first successful sync, `versionId` is stamped automatically; keep
+   it in Git so later syncs are not blocked by the version gate.
 5. Push to `main`, or run the **Sync agents to Aleph** workflow manually.
 
 ### Local sync
@@ -59,7 +61,7 @@ Every agent folder must include:
 
 | Path | Role |
 |------|------|
-| `aleph.json` | Sync catalog manifest: `name`, `description`, optional `labels`, `icon` / `iconUrl` |
+| `aleph.json` | Sync catalog manifest: `name`, `description`, optional `labels`, `icon` / `iconUrl`, stamped `versionId` |
 | `AGENTS.md` | Agent identity, tone, and operating rules |
 | `README.md` | Human-facing documentation |
 | `sandbox.toml` | Runtime settings |
@@ -77,11 +79,13 @@ Every agent folder must include:
   "description": "Current conditions and short forecasts via Open-Meteo.",
   "labels": ["Lifestyle", "Research"],
   "icon": "cover.jpg",
-  "visibility": "public"
+  "visibility": "public",
+  "versionId": "7fc4635d-a139-409b-9808-179ecf589493"
 }
 ```
 
 - `agentId` — required permanent UUID; sync creates or updates this exact agent and never falls back to display-name matching
+- `versionId` — optional until first sync, then required for existing remotes; stamped by push/sync/pull and excluded from change detection
 - `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
 - `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
 - `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, `Productivity`, or `Trading`
@@ -90,7 +94,7 @@ Every agent folder must include:
 - Synced agents stay **disabled** — users clone from the catalog, then enable in their workspace
 - An identical runtime bundle and identical `aleph.json` metadata reuse the
   latest version. Changing manifest metadata creates a version even when runtime
-  files are unchanged; changing only `agentId` does not
+  files are unchanged; changing only `agentId` or `versionId` does not
 
 Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, or `.agents/` — those paths are reserved by Aleph. Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
 

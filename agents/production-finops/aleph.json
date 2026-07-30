@@ -4,5 +4,6 @@
   "description": "Read-only production cost and usage oversight for Vercel, Neon, and Upstash, with four-hour anomaly checks and a daily operating-cost report.",
   "labels": ["FinOps", "Production", "Engineering"],
   "icon": "cover.png",
-  "visibility": "private"
+  "visibility": "private",
+  "versionId": "e366d830-78fd-49c4-b3d8-2a2b4f308429"
 }
