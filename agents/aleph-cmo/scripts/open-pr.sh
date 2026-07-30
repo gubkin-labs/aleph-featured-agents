@@ -11,7 +11,8 @@ case "$branch" in
   *) printf '%s\n' "Refusing to push non-marketing branch: $branch" >&2; exit 1 ;;
 esac
 
-git -C "$repo" -c credential.helper='!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' \
+git -C "$repo" -c credential.helper= \
+  -c credential.helper='!f() { echo username=x-access-token; echo password=$GH_TOKEN; }; f' \
   push --set-upstream origin "$branch"
 
 payload="$(node -e 'process.stdout.write(JSON.stringify({title:process.argv[1],body:process.argv[2],head:process.argv[3],base:"main"}))' "$title" "$body" "$branch")"
