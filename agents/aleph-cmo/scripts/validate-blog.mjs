@@ -1,5 +1,5 @@
-import { readFile, realpath } from "node:fs/promises";
-import { basename, resolve } from "node:path";
+import { readFile, readdir, realpath } from "node:fs/promises";
+import { basename, dirname, join, relative, resolve } from "node:path";
 
 const fail = (message) => {
   process.stderr.write(`Blog validation failed: ${message}\n`);
@@ -11,12 +11,24 @@ if (!requestedPath) {
   fail("usage: node scripts/validate-blog.mjs PATH_TO_BLOG_POST");
 }
 
+const workspace =
+  process.env.ALEPH_CMO_WORKSPACE ??
+  join(process.env.HOME, "aleph-cmo-workspace");
+const blogDirectory = await realpath(
+  join(workspace, "project10-frontend", "content", "blog")
+);
 const articlePath = await realpath(resolve(requestedPath)).catch(() =>
   fail(`file does not exist: ${requestedPath}`)
 );
+const pathWithinBlog = relative(blogDirectory, articlePath);
 
-if (!articlePath.endsWith(".md")) {
-  fail("article must be a Markdown (.md) file");
+if (
+  pathWithinBlog.startsWith("..") ||
+  pathWithinBlog === "" ||
+  dirname(articlePath) !== blogDirectory ||
+  !articlePath.endsWith(".md")
+) {
+  fail("article must be one Markdown file directly inside content/blog");
 }
 
 const source = (await readFile(articlePath, "utf8")).replaceAll("\r\n", "\n");
@@ -71,6 +83,16 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(metadata.date)) {
 }
 if (!source.slice(closingIndex + 5).trim()) {
   fail("article body is empty");
+}
+
+for (const filename of await readdir(blogDirectory)) {
+  if (!filename.endsWith(".md") || filename === basename(articlePath)) {
+    continue;
+  }
+  const existing = await readFile(join(blogDirectory, filename), "utf8");
+  if (existing.includes(`\nslug: ${metadata.slug}\n`)) {
+    fail(`slug duplicates ${filename}`);
+  }
 }
 
 process.stdout.write(`Blog validation passed: ${articlePath}\n`);
