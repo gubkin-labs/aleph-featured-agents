@@ -2,8 +2,11 @@
   "agentId": "f06658e0-f202-4d8b-8a68-a1e3f7937ef0",
   "name": "Social Media Posts Scout",
   "description": "Finds recent X posts from SaaS vendors hitting customer-cloud deployment pain and drafts useful, non-promotional replies for human review.",
-  "labels": ["Marketing", "Sales", "Research"],
+  "labels": [
+    "Marketing",
+    "Sales",
+    "Research"
+  ],
   "icon": "cover.jpg",
-  "visibility": "public",
-  "versionId": "c9efcbc6-bde8-45c8-aa11-41840f76a52a"
+  "versionId": "c43be3ee-ca52-40c3-8566-9db6158bba7b"
 }

@@ -35,11 +35,50 @@ when a read-only service token is available.
 1. Run `scripts/prepare.sh` output is available at the start of each turn. It
    installs missing read-only reporting CLIs only when the current sandbox image
    does not already contain them.
-2. Use provider CLIs or their documented read-only API commands to collect time
-   bounded usage and billing data. Prefer explicit account, project, and date
-   filters.
-3. Reconcile anomalies against the prior report in memory when available. Flag
+2. Read the latest report from memory (`production-finops.md`) to establish
+   baselines. If none exists, flag this in the report.
+3. Use `sh scripts/collect-usage.sh <provider> <subcommand>` for standard
+   read-only queries. Falls back to direct CLI/API calls if more granular data
+   is needed. Prefer explicit account, project, and date filters.
+4. Reconcile anomalies against the prior report in memory when available. Flag
    missing baselines instead of guessing.
+
+## Known API patterns (read-only)
+
+### Vercel
+- **Team info + billing plan**: `GET /v1/teams/{slug}` — works. Returns plan,
+  trial status, currency, invoice items, resource config.
+- **Project list**: `vercel project list --scope {slug}` — works.
+- **Usage data**: `GET /v1/teams/{slug}/usage?from={epoch}&to={epoch}` — may
+  return empty responses. Alternative `GET /v2/usage?teamId={slug}&type={type}`
+  requires specific `type` and date format. When the usage API returns no data,
+  note it as a data gap rather than assuming zero usage.
+- **Billing**: No `vercel billing` CLI subcommand exists. Use the team API
+  endpoint above for plan/period info. There is no live spend endpoint.
+- **Deployments**: `GET /v1/deployments?teamId={slug}&limit=N` — works.
+- **Trial note**: The team is on a Pro trial (Jul 17–Jul 31 2026). Check
+  trial status and flag upcoming expiration.
+
+### Neon
+- **API key scope**: The NEON_API_KEY is scoped to a single project
+  (`aged-cell-56570215` / "project10"). Commands like `neonctl projects list`
+  will fail outside this project. Always reference this project ID directly.
+- **Project info (API)**: `GET /api/v2/projects/{project-id}` — returns compute
+  time, data transfer, storage, autoscaling config, plan info. This is the
+  primary source for billing-period usage.
+- **Branch list**: `neonctl branches list --project-id {id}` — works.
+- **Endpoints**: `neonctl endpoints list` is not a valid command. Use the API.
+- **Plan**: Currently on free_v3. Track compute_time_seconds against the free
+  tier's ~100 CPU-hour monthly allowance.
+
+### Upstash
+- **Redis database list**: `upstash redis list --email --api-key` — works.
+  Returns database_id, name, type (free/paid), size, region, state.
+- **Redis stats**: `upstash redis stats --db-id {id} --email --api-key` — works.
+  Returns daily requests, bandwidth, keyspace, throughput, latency, command
+  breakdowns, and monthly billing ($0 for free tier).
+- **Not checked**: QStash, Vector, Search indexes — only Redis is queried by
+  default. Add explicit queries if those services are in use.
 
 ## Report format
 

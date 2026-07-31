@@ -1,4 +1,4 @@
-# Social Media Posts Scout
+# X Engagement Scout
 
 **Who it’s for:** Founders selling software that enterprises often need inside
 the customer’s own cloud — people who want to join **buyer-side** X
