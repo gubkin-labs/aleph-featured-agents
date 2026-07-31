@@ -1,6 +1,6 @@
 {
   "agentId": "f06658e0-f202-4d8b-8a68-a1e3f7937ef0",
-  "name": "X Engagement Scout",
+  "name": "Social Media Posts Scout",
   "description": "Finds recent X posts from SaaS vendors hitting customer-cloud deployment pain and drafts useful, non-promotional replies for human review.",
   "labels": ["Marketing", "Sales", "Research"],
   "icon": "cover.jpg",

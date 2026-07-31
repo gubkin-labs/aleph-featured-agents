@@ -12,14 +12,10 @@ deployed by the agent.
 ## After cloning
 
 1. Keep the synced agent private and enable it in the intended scope.
-2. Add a least-privilege `GH_TOKEN` to the clone's vault scope. The
-   featured-agent sync workflow can provision the source agent's value from its
-   `ALEPH_REPOS_TOKEN` GitHub Actions secret, but Aleph never copies secrets
-   into clones. It needs read access to `gubkin-labs/project10` and
-   contents/pull-request write access only to `gubkin-labs/project10-frontend`.
-   The bundle uses Git and GitHub's REST API directly; it does not require the
-   GitHub CLI or Python in the sandbox. Its included validator runs on Node,
-   which is part of the agent runtime.
+2. Open the agent's **Connections** page and connect **GitHub** for that
+   workspace scope. The connection must authorize access to read
+   `gubkin-labs/project10` and to create branches/PRs on
+   `gubkin-labs/project10-frontend`. Do not put a `GH_TOKEN` in the vault.
 3. Review the first scheduled report and every resulting PR. Add approved ICP,
    positioning, and proof-point details through chat; the agent records them in
    its memory for later research.

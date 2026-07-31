@@ -9,11 +9,9 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 3. Add repository secrets:
    - `ALEPH_API_KEY` (required)
    - `ALEPH_API_URL` (optional; defaults to `https://api.aleph-agent.com`)
-   - `ALEPH_REPOS_TOKEN` (required for Aleph CMO; stored in the
-     featured-agent organization Vault as the
-     Aleph vault value named `GH_TOKEN`, without appearing in the bundle)
-   - The workflow addresses that Vault by its stable organization slug,
-     `aleph-featured-agents-org`.
+   - After sync, connect **GitHub** on the Aleph CMO agent's Connections page
+     in the featured-agent organization (`aleph-featured-agents-org`). The
+     agent no longer uses a vault `GH_TOKEN`.
 4. Give every `aleph.json` a permanent UUID `agentId`. The manifest is the
    source of truth: first sync creates that exact ID and later runs update it.
    After the first successful sync, `versionId` is stamped automatically; keep
