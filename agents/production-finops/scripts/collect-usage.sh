@@ -15,6 +15,7 @@ Providers:
 Examples:
   sh scripts/collect-usage.sh vercel team        # Team info + billing plan
   sh scripts/collect-usage.sh vercel projects    # Project list
+  sh scripts/collect-usage.sh vercel usage       # Usage data (tries 3 API approaches)
   sh scripts/collect-usage.sh neon project       # Project info + usage
   sh scripts/collect-usage.sh neon branches      # Branch list
   sh scripts/collect-usage.sh upstash list       # List Redis databases
@@ -68,8 +69,49 @@ for dep in d.get('deployments', []):
     print(f\"{dep.get('name','?')} | {dep.get('state','?')} | url: {dep.get('url','?')}\")
 "
         ;;
+      usage)
+        echo "=== Vercel Usage Data ==="
+        echo "Info: Vercel usage API is known to return empty responses for some team configs."
+        echo "Trying multiple endpoints..."
+        echo ""
+        # Approach 1: v1/teams/{slug}/usage with epoch timestamps (last 30 days)
+        echo "--- v1/teams/{slug}/usage (last 30 days) ---"
+        _now_epoch=$(python3 -c "import time; print(int(time.time() * 1000))")
+        _thirty_days_ago=$(python3 -c "import time; print(int((time.time() - 30*86400) * 1000))")
+        _v1_result=$(curl -s --fail -H "Authorization: Bearer $VERCEL_TOKEN" \
+          "https://api.vercel.com/v1/teams/${TEAM_SLUG}/usage?from=${_thirty_days_ago}&to=${_now_epoch}" 2>&1)
+        if [ -n "$_v1_result" ] && [ "$_v1_result" != "[]" ] && [ "$_v1_result" != "{}" ]; then
+          echo "$_v1_result" | python3 -m json.tool 2>/dev/null || echo "$_v1_result"
+        else
+          echo "(empty response)"
+        fi
+        echo ""
+        # Approach 2: v2/usage with type=requests (current billing period)
+        echo "--- v2/usage?type=requests ---"
+        _v2_req=$(curl -s --fail -H "Authorization: Bearer $VERCEL_TOKEN" \
+          "https://api.vercel.com/v2/usage?teamId=${TEAM_SLUG}&type=requests" 2>&1)
+        if [ -n "$_v2_req" ] && [ "$_v2_req" != "[]" ] && [ "$_v2_req" != "{}" ]; then
+          echo "$_v2_req" | python3 -m json.tool 2>/dev/null || echo "$_v2_req"
+        else
+          echo "(empty response)"
+        fi
+        echo ""
+        # Approach 3: v2/usage with type=build-minutes
+        echo "--- v2/usage?type=build-minutes ---"
+        _v2_build=$(curl -s --fail -H "Authorization: Bearer $VERCEL_TOKEN" \
+          "https://api.vercel.com/v2/usage?teamId=${TEAM_SLUG}&type=build-minutes" 2>&1)
+        if [ -n "$_v2_build" ] && [ "$_v2_build" != "[]" ] && [ "$_v2_build" != "{}" ]; then
+          echo "$_v2_build" | python3 -m json.tool 2>/dev/null || echo "$_v2_build"
+        else
+          echo "(empty response)"
+        fi
+        echo ""
+        echo "--- Summary ---"
+        echo "If all endpoints returned empty, usage data is unavailable via API."
+        echo "An operator should check the Vercel dashboard manually."
+        ;;
       *)
-        echo "Vercel subcommands: team, projects, deployments"
+        echo "Vercel subcommands: team, projects, deployments, usage"
         exit 1
         ;;
     esac
@@ -152,7 +194,7 @@ print()
 print('Daily bandwidth trend:')
 for bw in d.get('bandwidths', []):
     print(f'  {bw.get(\"x\",\"?\")[:10]}: {bw.get(\"y\",\"?\")} bytes')
-" "$_upstash_tmp"
+\" \"$_upstash_tmp\"
         rm "$_upstash_tmp"
         ;;
       *)

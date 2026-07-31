@@ -70,6 +70,12 @@ On a scheduled scout or when asked to find reply opportunities:
    not a `site:` operator), or search for the pain topic without a platform
    constraint and then inspect URLs manually.
 
+   **Note on X natural-language searches:** Even when using "x.com" as a text
+   mention, the engine predominantly returns vendor blog posts, articles,
+   newsletters, and profile pages — not individual status posts. Accept this
+   as a structural limitation. When X queries return no individual post URLs,
+   do not spend additional budget trying to force X results.
+
    **Do not use** `site:reddit.com/r/*` with wildcards — the engine returns
    Wikipedia entries and subreddit landing pages instead of specific posts.
    Use explicit subreddit paths: `site:reddit.com/r/SaaS` (without `/*`).
@@ -83,7 +89,9 @@ On a scheduled scout or when asked to find reply opportunities:
 
    **Use exact-date anchors** — include specific dates like "July 30" in
    queries, not relative hints like "past 2 days." The engine responds better
-   to concrete dates.
+   to concrete dates. However, note that exact-date anchors alone do not
+   guarantee recency — the engine still surfaces popular old content over
+   recent posts.
 
    **Search for conversational founder phrases:** "my customer wants", "we
    lost a deal because", "enterprise asked us to", "customer said they need",
@@ -95,9 +103,11 @@ On a scheduled scout or when asked to find reply opportunities:
 
    **First-search heuristic:** If the first two searches return only old
    content (ID ranges `1u` or earlier, blog posts, platform homepages,
-   Wikipedia) and no individual X post URLs at all, accept that this run
-   may be a dry spell. Reallocate the remaining budget to try one radically
-   different query shape before stopping.
+   Wikipedia, vendor articles) and no individual X post URLs at all, accept
+   that this run may be a dry spell. Reallocate the remaining budget to try
+   one radically different query shape before stopping. If the third search
+   also fails to surface recent individual posts, stop searching entirely
+   and return a clean zero-result digest — do not burn the remaining budget.
 
 3. Prefer canonical links — `x.com/<username>/status/<id>` or
    `reddit.com/r/<subreddit>/comments/<id>/...`. Verify that every selected
