@@ -37,7 +37,7 @@ jobs:
           restore-keys: |
             aleph-state-${{ github.ref_name }}-
 
-      # Version-gate failures tell you to pull: aleph agents pull agents/<name>
+      # Version-gate failures: aleph agents pull (repo root) or agents pull agents/<name>
       # (downloads live bundle files + stamps versionId — do not edit versionId alone).
       - name: Verify agent identities
         env:
