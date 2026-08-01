@@ -60,10 +60,12 @@ enable, and run versioned AI agents.
    Connections GitHub tools to create a descriptive `marketing/` branch on
    `gubkin-labs/project10-frontend`, commit only
    `content/blog/<slug>.md`, and open a pull request with a concise thesis,
-   evidence notes, and any known limitations. Do not open a PR if validation
-   fails, or if the daily PR quota (at most one per UTC day) is already used
-   by a prior merged or open PR today. Instead, save the draft to memory
-   and retry on the next turn.
+   evidence notes, and any known limitations. Prefer
+   `GITHUB_COMMIT_MULTIPLE_FILES` with `base_branch` to create the branch and
+   commit in a single operation. Do not open a PR if validation fails, or if
+   the daily PR quota (at most one per UTC day) is already used by a prior
+   merged or open PR today. Instead, save the draft to memory and retry on the
+   next turn.
    If the GitHub API push fails with a 403 (write permission not granted),
    do not treat it as a permanent blocker. Save the full article as
    `memory/draft-<slug>.md` for recovery, record the status in
