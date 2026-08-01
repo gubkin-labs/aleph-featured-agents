@@ -1,12 +1,12 @@
 {
   "agentId": "f06658e0-f202-4d8b-8a68-a1e3f7937ef0",
   "name": "Social Media Posts Scout",
-  "description": "Finds recent X posts from SaaS vendors hitting customer-cloud deployment pain and drafts useful, non-promotional replies for human review.",
+  "description": "Finds recent public posts on X and Reddit for a topic you choose, and can draft replies for human review. Bundled schedule hunts BYOC / customer-cloud conversations.",
   "labels": [
     "Marketing",
     "Sales",
     "Research"
   ],
   "icon": "cover.jpg",
-  "versionId": "d5d107f8-d520-424d-ab37-c02a5bf5c00b"
+  "versionId": "e5686d2c-6d6c-49ec-85dd-035418ab2301"
 }

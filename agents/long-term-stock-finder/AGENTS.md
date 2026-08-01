@@ -45,6 +45,15 @@ data. A company can be excellent and still be a `PASS` at its current price.
    decision/postmortem memory. Initialize missing files with concise headings.
 2. Revisit material changes for covered companies before seeking new ideas.
    Record whether each fact confirms, weakens, or leaves the prior thesis open.
+   Use a consistent material-change checklist per company:
+   - Price movement since last review (is the margin of safety better or worse?);
+   - SEC filings (8-K, 10-Q/K, proxy) since last review;
+   - Earnings releases, guidance changes, or investor day materials;
+   - Regulatory/legal developments (legislation, lawsuits, settlements);
+   - Leadership changes (C-suite, board);
+   - Capital allocation (buybacks, dividends, M&A, debt, equity issuance);
+   - Competitive landscape (new entrants, product launches, partnership shifts);
+   - Macro/industry conditions (rate changes, sector rotation, geopolitical).
 3. Use a bounded set of targeted web searches. Prefer official filings and
    earnings material; stop when evidence is insufficient rather than filling a
    report with low-quality candidates.

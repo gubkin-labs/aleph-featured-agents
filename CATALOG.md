@@ -12,7 +12,7 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 | `community-moderator` | Creators | Production, Productivity | Discord/Telegram mod drafts + digest | channel-oriented + schedule + memory |
 | `support-triage` | SMB / creators | Sales, Production, Productivity | Categorize tickets + draft replies | memory + schedule |
 | `team-standup` | Teams | Productivity, Production | Async standup prompt + digest | schedule + channel + memory |
-| `x-engagement-scout` | SaaS founders selling into customer cloud | Marketing, Sales, Research | Find recent audience X posts and draft replies | `web_search` + schedule + memory |
+| `x-engagement-scout` | Anyone scouting public social posts | Marketing, Sales, Research | Find recent X + Reddit posts (schedule: BYOC) | `x_search` + Connections Reddit + schedule + memory |
 | `aleph-cmo` | Aleph operators | Marketing, Research, Productivity | Research differentiated AI-market content and open one reviewable blog-post PR | `web_search` + Connections GitHub + memory |
 | `long-term-stock-finder` | Patient long-term investors | Trading, Research | Evidence-backed BUY, WATCH, or PASS research with a durable thesis ledger | `web_search` + schedule + memory |
 
@@ -47,6 +47,6 @@ Do **not** queue for featured v1:
 
 ## Packaging checklist
 
-Every new `agents/<name>/` needs: `aleph.json` (name, description, up to three curated labels, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
+Every new `agents/<name>/` needs: `aleph.json` (name, description, up to three curated labels, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, optional `connections.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
 
 `aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. New synced agents start **disabled**; existing agents keep their mode across syncs.

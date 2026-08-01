@@ -1,45 +1,36 @@
-# X Engagement Scout
+# Social Media Posts Scout
 
-**Who it’s for:** Founders selling software that enterprises often need inside
-the customer’s own cloud — people who want to join **buyer-side** X
-conversations, not chase competing BYOC products.
+**Who it’s for:** Anyone who wants a scheduled or on-demand scout for recent
+public posts on X and Reddit.
 
-**What it does on a schedule:** Every four hours, it searches for public X
-posts from roughly the **last couple of days** where SaaS / AI / security /
-data vendors describe deployment pain: VPC or customer-account installs, data
-residency objections, airgapped asks, or the ops burden of maintaining
-self-hosted customer deployments. It returns up to three ranked opportunities
-with a link, context, suggested reply, and selection rationale.
+**What it does:** Finds already-published posts matching a topic you give it
+(or the bundled schedule topic), returns ranked links with context, and can
+draft reply suggestions for human review. It cannot post, comment, like,
+repost, or otherwise mutate a social account.
 
-It deliberately avoids competitor landscape threads, peer product launches, and
-“BYOC tools” style queries.
-
-The agent drafts only. It cannot post, like, repost, quote, follow, or modify an
-X account.
+The bundled schedule searches every four hours for posts specifically about
+**BYOC** (Bring Your Own Cloud / customer-cloud deployment). Edit
+`schedules.toml` after cloning to change the topic or cadence.
 
 ## After cloning
 
-1. Enable the agent. No API key or paid X developer account is required.
-2. Optionally tell it your public voice, strong opinions, preferred topics,
-   exclusions, and proof points it may safely mention. These are stored in the
-   clone’s private memory, not in the public bundle.
-3. Optionally connect Discord under **Channels** and choose a Schedule channel
+1. Enable the agent.
+2. Open **Connections** and connect **Reddit** for the agent’s dashboard scope.
+   Reddit search uses that connection; X discovery uses Aleph’s built-in
+   `x_search` (no X developer account required).
+3. Optionally tell it your public voice, preferred topics, exclusions, and
+   proof points it may safely mention. These are stored in the clone’s private
+   memory, not in the public bundle.
+4. Optionally connect Discord under **Channels** and choose a Schedule channel
    to receive each digest there.
-
-The bundled schedule is `0 */4 * * *` in UTC. Edit `schedules.toml` after
-cloning if a different four-hour alignment is preferable.
 
 ## Discovery behavior
 
-The agent uses Aleph’s built-in web search with several narrow audience-pain
-queries aimed at canonical public X post links from the last ~48 hours.
-Search-engine indexing can lag or omit posts, so the agent verifies available
-context and returns fewer than three rather than padding a digest with weak,
-stale, or competitor-centric suggestions. Scheduled research is capped at five
-searches and may return one or two strong opportunities — or none — instead of
-timing out while trying to fill three slots. It does not narrate intermediate
-research progress on scheduled runs.
+- **X:** platform `x_search` for live posts and threads.
+- **Reddit:** Connections Reddit toolkit tools (for example
+  `REDDIT_SEARCH_ACROSS_SUBREDDITS`), never Reddit write actions.
+- Private memory tracks presented post IDs, drafts, authors, and topic patterns
+  so later digests avoid repetition.
 
-The agent records presented tweet IDs, reply drafts, recent authors, and topic
-patterns in private memory so later digests avoid repetition. Tell it whether
-you posted, edited, or skipped a suggestion to improve future selection.
+Ask in chat for any topic (for example “cool AI infra posts on Reddit”) —
+the agent is not limited to the schedule’s BYOC prompt.

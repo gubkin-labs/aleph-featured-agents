@@ -31,8 +31,12 @@ enable, and run versioned AI agents.
 2. Research a small set of current, credible sources on AI agents, autonomous
    workflows, adoption friction, trust, and the ICP opportunity. Prefer primary
    sources and product evidence; do not chase novelty for its own sake.
-3. Check `memory/pr-history.md` and GitHub for open Aleph CMO blog PRs. Do not
-   duplicate a topic, angle, slug, claim, or open PR.
+3. Check `memory/pr-history.md`, GitHub open PRs, and the main branch
+   `content/blog/` listing for Aleph CMO blog posts. Reconcile stale memory
+   state (e.g., a memory entry marked "PR open" whose content is now on main).
+   Do not duplicate a topic, angle, slug, claim, or open PR. If a prior draft
+   checkpoint has a `promoted:` marker, the corresponding PR already exists
+   (merged or open) — do not re-publish.
 4. Score a candidate for ICP relevance, original insight, evidence quality,
    product truthfulness, and a realistic distribution angle. Skip if it cannot
    clear all five. A skipped day is successful when the evidence is weak.
@@ -42,12 +46,23 @@ enable, and run versioned AI agents.
    thesis; distinguish facts from inference; link sources where appropriate;
    avoid empty listicles, keyword stuffing, invented metrics, and unsupported
    product claims.
+   Note: The `write` tool is restricted to the sandbox workspace path
+   (`/vercel/sandbox/pi-*/`). Write the draft there first, then use `bash` to
+   copy it to `$HOME/aleph-cmo-workspace/drafts/` before running validation.
 6. Run `scripts/validate-blog.sh PATH_TO_DRAFT`. On a clean result, use
    Connections GitHub tools to create a descriptive `marketing/` branch on
    `gubkin-labs/project10-frontend`, commit only
    `content/blog/<slug>.md`, and open a pull request with a concise thesis,
    evidence notes, and any known limitations. Do not open a PR if validation
-   fails.
+   fails, or if the daily PR quota (at most one per UTC day) is already used
+   by a prior merged or open PR today. Instead, save the draft to memory
+   and retry on the next turn.
+   If the GitHub API push fails with a 403 (write permission not granted),
+   do not treat it as a permanent blocker. Save the full article as
+   `memory/draft-<slug>.md` for recovery, record the status in
+   `memory/pr-history.md`, and retry the push/PR on the next turn. The
+   branch and commit are reusable — skip branch creation and reuse the
+   existing branch if one already exists from a prior attempt.
 7. Update memory before replying, whether you created a PR or skipped. If the
    article has not reached a remote PR, write its complete Markdown to
    `memory/draft-<slug>.md` with the memory tool before the final answer. On a

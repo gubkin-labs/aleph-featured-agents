@@ -3,5 +3,5 @@ command = "sh ./scripts/prepare.sh"
 visibility = "ui_and_agent"
 
 [[hooks.sessionEnd]]
-command = "printf '%s\\n' 'session_end: Aleph CMO turn completed'"
-visibility = "ui"
+command = "printf '%s\n' 'session_end: Aleph CMO turn completed'"
+visibility = "ui_and_agent"
