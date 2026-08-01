@@ -15,6 +15,7 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 | `x-engagement-scout` | Anyone scouting public social posts | Marketing, Sales, Research | Find recent X + Reddit posts (schedule: BYOC) | `x_search` + Connections Reddit + schedule + memory |
 | `aleph-cmo` | Aleph operators | Marketing, Research, Productivity | Research differentiated AI-market content and open one reviewable blog-post PR | `web_search` + Connections GitHub + memory |
 | `long-term-stock-finder` | Patient long-term investors | Trading, Research | Evidence-backed BUY, WATCH, or PASS research with a durable thesis ledger | `web_search` + schedule + memory |
+| `discord-conversation-starter` | Community teams | Productivity, Production | Turn new messages from one Discord channel into contextual Aleph conversation turns | Discord Connection + trigger + persistent conversation + hooks |
 
 ## Ranked backlog (wave 2+)
 

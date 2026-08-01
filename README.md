@@ -109,6 +109,7 @@ Channels (Discord / Telegram) are **not** bundle files. Connect them in the Alep
 | `support-triage` | Categorize customer messages and draft replies |
 | `team-standup` | Weekday async standup prompt + afternoon digest |
 | `x-engagement-scout` | Recent X + Reddit posts on a topic; bundled schedule hunts BYOC conversations every four hours |
+| `discord-conversation-starter` | New messages in a selected Discord channel become contextual Aleph conversation turns |
 
 All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
 
