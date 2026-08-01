@@ -9,8 +9,6 @@
     "node": ">=20"
   },
   "scripts": {
-    "generate": "node scripts/generate-catalog.mjs",
-    "quality": "node scripts/validate-catalog.mjs",
     "sync": "pnpm dlx @gubkin-labs/aleph-cli@latest agents sync agents --no-enable"
   },
   "devDependencies": {

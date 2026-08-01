@@ -98,26 +98,19 @@ Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, o
 
 Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels** after you clone and enable an agent.
 
-## Featured agents
+## Featured agents (wave 1)
 
-The repository contains 50 clone-ready business workflow agents across
-operations, sales, support, marketing, finance, engineering, product, design,
-research, and leadership, plus the established showcase and operational agents.
-See [CATALOG.md](CATALOG.md) for the complete integration and trigger matrix.
+| Folder | One-line promise |
+|--------|------------------|
+| `weather` | Current conditions via Open-Meteo (skill showcase) |
+| `morning-brief` | Daily weather + headlines + focus note |
+| `habit-coach` | Morning/evening habit check-ins with streaks |
+| `community-moderator` | Mod drafts + daily norms digest for communities |
+| `support-triage` | Categorize customer messages and draft replies |
+| `team-standup` | Weekday async standup prompt + afternoon digest |
+| `x-engagement-scout` | Recent X + Reddit posts on a topic; bundled schedule hunts BYOC conversations every four hours |
 
-Business workflows use chat and scheduled polling. They never imply real-time
-connected-app triggers, and scheduled runs are read-only. Consequential writes
-require an exact persisted preview and explicit confirmation in a later
-user-authored chat turn.
-
-Generated business bundles prefer managed Connections and zero Vault secrets;
-connect Discord/Telegram separately from the Aleph Channels page after cloning.
-
-### Catalog development
-
-Edit `catalog/agents.mjs`, run `pnpm generate`, then run `pnpm quality`. The
-generator commits complete standalone bundles; the existing CLI sync workflow
-does not depend on generation at publish time.
+All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.
 
 ## Cache
 

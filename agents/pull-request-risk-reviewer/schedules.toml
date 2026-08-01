@@ -1,4 +1,0 @@
-[[schedules]]
-cron = "0 9 * * 1-5"
-markdown = "Run the scheduled Pull Request Risk Reviewer review. Read source systems only. Deduplicate against memory, produce a concise report, save any proposed consequential actions as drafts under outbound/, and do not send, post, create, update, merge, or delete external records."
-timezone = "UTC"

@@ -1,7 +1,0 @@
-[[connections]]
-id = "googlesheets"
-required = true
-
-[[connections]]
-id = "supabase"
-required = true
