@@ -1,0 +1,11 @@
+[[connections]]
+id = "googlesheets"
+required = true
+
+[[connections]]
+id = "hubspot"
+required = true
+
+[[connections]]
+id = "asana"
+required = true

@@ -1,0 +1,11 @@
+{
+  "agentId": "79f418f5-2810-4cde-95f6-3f614f224e22",
+  "name": "Lead Research Copilot",
+  "description": "Research selected leads, enrich their context, and draft grounded outreach.",
+  "labels": [
+    "Sales",
+    "Research"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

@@ -1,0 +1,11 @@
+{
+  "agentId": "155846f3-502f-419d-a5a6-c9b361d4b361",
+  "name": "OKR Progress Narrator",
+  "description": "Produce an evidence-backed weekly OKR progress narrative.",
+  "labels": [
+    "Productivity",
+    "Research"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

@@ -1,0 +1,11 @@
+{
+  "agentId": "9b3e1d12-1204-4438-bdb6-bb1b5eabce63",
+  "name": "Executive Daily Brief",
+  "description": "Synthesize inbox, calendar, team, and project signals into a prioritized daily brief.",
+  "labels": [
+    "Productivity",
+    "Research"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

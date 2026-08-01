@@ -1,0 +1,11 @@
+[[connections]]
+id = "greenhouse"
+required = true
+
+[[connections]]
+id = "googledocs"
+required = true
+
+[[connections]]
+id = "slack"
+required = true

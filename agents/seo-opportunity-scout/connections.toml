@@ -1,0 +1,11 @@
+[[connections]]
+id = "google_search_console"
+required = true
+
+[[connections]]
+id = "google_analytics"
+required = true
+
+[[connections]]
+id = "googledocs"
+required = true

@@ -1,0 +1,11 @@
+{
+  "agentId": "ad5df4b6-d159-49c9-952c-7076a67768ce",
+  "name": "Content Repurposing Studio",
+  "description": "Transform source content into reviewable channel-specific campaign drafts.",
+  "labels": [
+    "Marketing",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

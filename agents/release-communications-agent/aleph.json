@@ -1,0 +1,11 @@
+{
+  "agentId": "e01d6f38-26c1-4cca-951d-06054abf5baf",
+  "name": "Release Communications Agent",
+  "description": "Turn merged work into release notes and channel-specific announcement drafts.",
+  "labels": [
+    "Engineering",
+    "Marketing"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

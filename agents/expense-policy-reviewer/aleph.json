@@ -1,0 +1,11 @@
+{
+  "agentId": "96dff9e2-5a13-4305-8aec-b4a7da1ffa59",
+  "name": "Expense Policy Reviewer",
+  "description": "Classify receipts and flag policy exceptions for human review.",
+  "labels": [
+    "FinOps",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

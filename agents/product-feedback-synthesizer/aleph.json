@@ -1,0 +1,11 @@
+{
+  "agentId": "c5b0e2bc-3fcd-4b75-9c6c-8ac84c8aba41",
+  "name": "Product Feedback Synthesizer",
+  "description": "Cluster product feedback into evidence-linked opportunities.",
+  "labels": [
+    "Research",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

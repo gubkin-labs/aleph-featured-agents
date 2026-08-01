@@ -1,0 +1,11 @@
+[[connections]]
+id = "googledocs"
+required = true
+
+[[connections]]
+id = "notion"
+required = true
+
+[[connections]]
+id = "linkedin"
+required = true

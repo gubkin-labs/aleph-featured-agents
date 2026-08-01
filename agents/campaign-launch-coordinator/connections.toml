@@ -1,0 +1,11 @@
+[[connections]]
+id = "asana"
+required = true
+
+[[connections]]
+id = "slack"
+required = true
+
+[[connections]]
+id = "mailchimp"
+required = true

@@ -1,0 +1,11 @@
+{
+  "agentId": "25dfcc2a-57ab-49e8-9e8a-ee50866e2157",
+  "name": "Pipeline Hygiene Agent",
+  "description": "Find stale or incomplete opportunities and prepare a correction queue.",
+  "labels": [
+    "Sales",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

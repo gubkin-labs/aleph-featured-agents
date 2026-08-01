@@ -1,0 +1,11 @@
+{
+  "agentId": "db3b18fd-8501-499e-81fa-903824ee19ad",
+  "name": "Finance Close Assistant",
+  "description": "Reconcile finance summaries, surface anomalies, and prepare a close pack.",
+  "labels": [
+    "FinOps",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

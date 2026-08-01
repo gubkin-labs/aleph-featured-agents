@@ -1,0 +1,11 @@
+[[connections]]
+id = "github"
+required = true
+
+[[connections]]
+id = "notion"
+required = true
+
+[[connections]]
+id = "slack"
+required = true

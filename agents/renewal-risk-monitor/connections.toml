@@ -1,0 +1,7 @@
+[[connections]]
+id = "salesforce"
+required = true
+
+[[connections]]
+id = "hubspot"
+required = true

@@ -1,0 +1,11 @@
+[[connections]]
+id = "productboard"
+required = true
+
+[[connections]]
+id = "intercom"
+required = true
+
+[[connections]]
+id = "notion"
+required = true

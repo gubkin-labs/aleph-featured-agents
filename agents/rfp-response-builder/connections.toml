@@ -1,0 +1,11 @@
+[[connections]]
+id = "googledrive"
+required = true
+
+[[connections]]
+id = "box"
+required = true
+
+[[connections]]
+id = "googledocs"
+required = true

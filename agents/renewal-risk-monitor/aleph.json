@@ -1,0 +1,11 @@
+{
+  "agentId": "2fb04958-4e66-4225-9930-ca9629cb9cad",
+  "name": "Renewal Risk Monitor",
+  "description": "Review upcoming renewals and explain evidence-backed account risks.",
+  "labels": [
+    "Sales",
+    "Research"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

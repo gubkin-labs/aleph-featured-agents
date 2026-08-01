@@ -1,0 +1,11 @@
+[[connections]]
+id = "gmail"
+required = true
+
+[[connections]]
+id = "googlecalendar"
+required = true
+
+[[connections]]
+id = "slack"
+required = true

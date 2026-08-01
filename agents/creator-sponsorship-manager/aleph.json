@@ -1,0 +1,11 @@
+{
+  "agentId": "2b51f155-2591-4520-8f3d-d7058a9ebff9",
+  "name": "Creator Sponsorship Manager",
+  "description": "Extract sponsorship offers, compare terms, and prepare reply drafts.",
+  "labels": [
+    "Marketing",
+    "Sales"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

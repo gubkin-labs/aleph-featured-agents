@@ -1,0 +1,11 @@
+[[connections]]
+id = "slack"
+required = true
+
+[[connections]]
+id = "microsoft_teams"
+required = true
+
+[[connections]]
+id = "linear"
+required = true

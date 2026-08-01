@@ -1,0 +1,11 @@
+{
+  "agentId": "5e1edf22-8969-4fa7-9045-e571400c0044",
+  "name": "Async Standup Manager",
+  "description": "Collect team updates and prepare a concise blocker-aware digest.",
+  "labels": [
+    "Productivity",
+    "Production"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

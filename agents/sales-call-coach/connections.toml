@@ -1,0 +1,11 @@
+[[connections]]
+id = "gong"
+required = true
+
+[[connections]]
+id = "fathom"
+required = true
+
+[[connections]]
+id = "hubspot"
+required = true

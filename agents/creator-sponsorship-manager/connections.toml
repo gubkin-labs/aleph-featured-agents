@@ -1,0 +1,7 @@
+[[connections]]
+id = "gmail"
+required = true
+
+[[connections]]
+id = "googlesheets"
+required = true

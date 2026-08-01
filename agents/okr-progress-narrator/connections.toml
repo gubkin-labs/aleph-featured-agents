@@ -1,0 +1,11 @@
+[[connections]]
+id = "googlesheets"
+required = true
+
+[[connections]]
+id = "notion"
+required = true
+
+[[connections]]
+id = "linear"
+required = true

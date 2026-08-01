@@ -1,0 +1,11 @@
+[[connections]]
+id = "intercom"
+required = true
+
+[[connections]]
+id = "salesforce"
+required = true
+
+[[connections]]
+id = "notion"
+required = true

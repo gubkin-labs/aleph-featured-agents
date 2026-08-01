@@ -1,0 +1,11 @@
+[[connections]]
+id = "googledrive"
+required = true
+
+[[connections]]
+id = "notion"
+required = true
+
+[[connections]]
+id = "miro"
+required = true

@@ -1,0 +1,11 @@
+[[connections]]
+id = "figma"
+required = true
+
+[[connections]]
+id = "zeplin"
+required = true
+
+[[connections]]
+id = "linear"
+required = true

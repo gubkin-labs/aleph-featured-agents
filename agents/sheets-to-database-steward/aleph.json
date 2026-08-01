@@ -1,0 +1,11 @@
+{
+  "agentId": "347a3c02-c0c6-4277-8b92-531995d5a67f",
+  "name": "Sheets-to-Database Steward",
+  "description": "Validate spreadsheet rows and preview database upserts before approval.",
+  "labels": [
+    "Production",
+    "Engineering"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

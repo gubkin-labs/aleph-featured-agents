@@ -1,0 +1,11 @@
+{
+  "agentId": "0128fe9d-2b7c-470f-84ab-c95ec03dbeca",
+  "name": "Social Listening Brief",
+  "description": "Find timely Reddit and X conversations and summarize themes, risks, and opportunities.",
+  "labels": [
+    "Marketing",
+    "Research"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

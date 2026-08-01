@@ -1,0 +1,11 @@
+{
+  "agentId": "69187546-2add-4cad-82ad-dd41ba9d2166",
+  "name": "Bug Reproduction Assistant",
+  "description": "Turn issue reports and uploaded evidence into reproducible sandbox findings.",
+  "labels": [
+    "Engineering",
+    "Production"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

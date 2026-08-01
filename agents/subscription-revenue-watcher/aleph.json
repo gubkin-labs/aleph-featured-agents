@@ -1,0 +1,11 @@
+{
+  "agentId": "03a32eaa-9bf3-4128-88ab-f70abe7c84d5",
+  "name": "Subscription Revenue Watcher",
+  "description": "Detect churn, failed-payment, and recurring-revenue patterns and propose actions.",
+  "labels": [
+    "FinOps",
+    "Sales"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

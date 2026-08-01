@@ -1,0 +1,11 @@
+{
+  "agentId": "ef5c2443-c5f0-490f-990e-efa788f8996d",
+  "name": "Design Handoff Auditor",
+  "description": "Detect missing states, assets, and acceptance criteria before implementation.",
+  "labels": [
+    "Production",
+    "Engineering"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

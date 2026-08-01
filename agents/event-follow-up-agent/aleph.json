@@ -1,0 +1,11 @@
+{
+  "agentId": "2b35f5c8-10ae-41e7-9800-d517a89dceaf",
+  "name": "Event Follow-up Agent",
+  "description": "Segment event attendees and prepare relevant follow-up campaigns.",
+  "labels": [
+    "Marketing",
+    "Sales"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

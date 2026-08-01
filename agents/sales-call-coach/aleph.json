@@ -1,0 +1,11 @@
+{
+  "agentId": "d502f1fa-ed77-4368-88a2-fd2170d0fe30",
+  "name": "Sales Call Coach",
+  "description": "Extract objections and coaching opportunities from sales calls and preview CRM updates.",
+  "labels": [
+    "Sales",
+    "Productivity"
+  ],
+  "icon": "cover.svg",
+  "visibility": "public"
+}

@@ -1,0 +1,7 @@
+[[connections]]
+id = "facebook"
+required = true
+
+[[connections]]
+id = "instagram"
+required = true

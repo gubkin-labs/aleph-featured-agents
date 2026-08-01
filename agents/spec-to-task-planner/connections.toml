@@ -1,0 +1,11 @@
+[[connections]]
+id = "notion"
+required = true
+
+[[connections]]
+id = "confluence"
+required = true
+
+[[connections]]
+id = "linear"
+required = true

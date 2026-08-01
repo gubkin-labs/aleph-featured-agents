@@ -1,0 +1,7 @@
+[[connections]]
+id = "hubspot"
+required = true
+
+[[connections]]
+id = "attio"
+required = true

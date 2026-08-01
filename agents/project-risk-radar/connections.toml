@@ -1,0 +1,11 @@
+[[connections]]
+id = "asana"
+required = true
+
+[[connections]]
+id = "clickup"
+required = true
+
+[[connections]]
+id = "monday"
+required = true

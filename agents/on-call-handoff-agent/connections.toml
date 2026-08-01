@@ -1,0 +1,11 @@
+[[connections]]
+id = "pagerduty"
+required = true
+
+[[connections]]
+id = "sentry"
+required = true
+
+[[connections]]
+id = "slack"
+required = true

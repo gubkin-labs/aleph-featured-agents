@@ -1,0 +1,7 @@
+[[connections]]
+id = "stripe"
+required = true
+
+[[connections]]
+id = "quickbooks"
+required = true

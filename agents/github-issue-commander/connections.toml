@@ -1,0 +1,11 @@
+[[connections]]
+id = "github"
+required = true
+
+[[connections]]
+id = "linear"
+required = true
+
+[[connections]]
+id = "slack"
+required = true

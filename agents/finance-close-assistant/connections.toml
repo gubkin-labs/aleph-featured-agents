@@ -1,0 +1,11 @@
+[[connections]]
+id = "stripe"
+required = true
+
+[[connections]]
+id = "quickbooks"
+required = true
+
+[[connections]]
+id = "googlesheets"
+required = true

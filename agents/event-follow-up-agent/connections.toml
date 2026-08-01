@@ -1,0 +1,11 @@
+[[connections]]
+id = "eventbrite"
+required = true
+
+[[connections]]
+id = "hubspot"
+required = true
+
+[[connections]]
+id = "gmail"
+required = true
