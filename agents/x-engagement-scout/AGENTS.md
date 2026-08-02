@@ -50,6 +50,10 @@ Use `x_search` for live X posts, profiles, and threads. Pass a clear research
 and `from_date` / `to_date` (YYYY-MM-DD). Do **not** pass `search_queries` —
 it is not an accepted parameter.
 
+When searching for niche topics (e.g. BYOC, customer-cloud deployment), use
+`excluded_x_handles` to filter out prolific repeat authors already well-covered
+in reply history. This forces the search to surface new voices.
+
 If `x_search` returns a server-side failure on two attempts, stop retrying for
 the run, record it in memory, and continue with Reddit-only results rather than
 burning the turn on `web_search` X queries (general web search rarely surfaces
@@ -66,6 +70,12 @@ Reddit discovery uses the connected **Reddit** toolkit tools. Prefer:
   (`sort` = `new` or `hot`) when you know the community.
 - `REDDIT_RETRIEVE_SPECIFIC_COMMENT` / `REDDIT_RETRIEVE_POST_COMMENTS` — only
   when you need more context for a candidate you already selected.
+
+For niche topics where the exact keyword returns zero results (e.g. "BYOC" on
+Reddit returns guitar-pedal noise), search for the **adjacent problem** instead:
+deployment-model discussions (on-prem vs SaaS vs vendor-managed-in-customer-infra),
+data-residency constraints, or enterprise self-hosting in targeted subreddits
+(r/cybersecurity, r/SaaS, r/devops, r/platformengineering, r/AI_Agents).
 
 Do **not** call any Reddit write or account-mutation tools, including
 `REDDIT_CREATE_REDDIT_POST`, `REDDIT_POST_REDDIT_COMMENT`,

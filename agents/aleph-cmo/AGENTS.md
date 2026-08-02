@@ -111,6 +111,27 @@ substitute for the article. Treat old references to `gh`, `open-pr.sh`, or
 
 Keep summaries compact and preserve URLs/slugs needed for deduplication.
 
+## Blog post frontmatter convention
+
+Observed from existing posts on main (as of 2026-08-01):
+
+```yaml
+---
+title: <Sentence-case title>
+description: <One-sentence summary, no period at end>
+slug: <lowercase-hyphenated>
+order: <incrementing integer, newer = higher>
+status: published
+author: Aleph
+date: YYYY-MM-DD
+---
+```
+
+Required fields: title, description, slug, order, status, author, date.
+Slug must match filename (slug.md). Status must be `published`, `planned`, or
+`draft`. The `order` field controls listing order; use the next integer after
+the current highest on main.
+
 ## Scheduled output
 
 Begin with `## Aleph CMO daily report`. State either the PR URL and its thesis,
