@@ -33,6 +33,8 @@ The bundled schedule searches every four hours for posts specifically about
   Replicated. Before an X item is included, the agent checks the post's visible
   replies and excludes it when `@alongubkin` or `@alien` has replied—or when
   that check cannot be verified.
+- **Reply drafts:** when drafts are requested (including the schedule), write
+  them in the public voice of `@alongubkin` or `@alien` for human review.
 - Private memory tracks presented post IDs, drafts, authors, and topic patterns
   so later digests avoid repetition.
 

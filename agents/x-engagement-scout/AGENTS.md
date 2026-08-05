@@ -52,7 +52,9 @@ it is not an accepted parameter.
 
 When searching for niche topics (e.g. BYOC, customer-cloud deployment), use
 `excluded_x_handles` to filter out prolific repeat authors already well-covered
-in reply history. This forces the search to surface new voices.
+in reply history. This forces the search to surface new voices. Note
+`excluded_x_handles` / `allowed_x_handles` accept **at most 10 handles** — pick
+the most overrepresented authors first.
 
 ### X recommendation safeguards
 
@@ -67,6 +69,22 @@ in reply history. This forces the search to surface new voices.
   cannot be verified, omit the candidate rather than claiming it passed this
   check. This verification applies to every X recommendation, including
   scheduled runs; it does not apply to Reddit items.
+
+  **Reliable way to run the reply check:** after shortlisting candidates, run a
+  targeted `x_search` with `allowed_x_handles` set to the specific candidate
+  handles (up to 10). The response provides each post's full content plus its
+  visible reply count and whether the target users replied. If the objective's
+  response does not surface reply visibility for a candidate, run this targeted
+  fetch before including it.
+
+  **Objective phrasing that works:** when fetching candidate posts for the
+  reply check, phrase the objective so the engine *prints the posts themselves*,
+  e.g. "For each post print the full text, the canonical status URL, the visible
+  reply count, and the usernames of the visible repliers — specifically flag
+  whether @alongubkin or @alien appears". An objective that only asks to check
+  for @alongubkin/@alien activity returns an account-inactivity summary for
+  those handles and no candidate content, so reply visibility stays unverified
+  and the candidate must be omitted.
 
 If `x_search` returns a server-side failure on two attempts, stop retrying for
 the run, record it in memory, and continue with Reddit-only results rather than
@@ -86,10 +104,34 @@ Reddit discovery uses the connected **Reddit** toolkit tools. Prefer:
   when you need more context for a candidate you already selected.
 
 For niche topics where the exact keyword returns zero results (e.g. "BYOC" on
-Reddit returns guitar-pedal noise), search for the **adjacent problem** instead:
-deployment-model discussions (on-prem vs SaaS vs vendor-managed-in-customer-infra),
-data-residency constraints, or enterprise self-hosting in targeted subreddits
-(r/cybersecurity, r/SaaS, r/devops, r/platformengineering, r/AI_Agents).
+Reddit mostly returns guitar-pedal and LAN-gaming noise), search for the
+**adjacent problem** instead: deployment-model discussions (on-prem vs SaaS vs
+vendor-managed-in-customer-infra), data-residency constraints, or enterprise
+self-hosting in targeted subreddits (r/cybersecurity, r/SaaS, r/devops,
+r/platformengineering, r/AI_Agents).
+
+**KEYWORD-EXCEPTION (run 10, 2026-08-05):** the literal "BYOC" keyword is not
+always dead on Reddit — in tech-evaluation/observability communities it surfaced
+a genuinely on-topic post (r/Observability "eBPF, BYOC, ClickHouse, Telemetry
+Pipelines: Which Ones Are Actually Worth It?"). Add r/Observability to the
+targeted subreddit list for BYOC/customer-cloud runs, and try the literal
+keyword in subreddits that evaluate vendor tech stacks before falling back to
+adjacent-problem queries.
+
+**Reddit search noise fallback:** `REDDIT_SEARCH_ACROSS_SUBREDDITS` can return a
+high fraction of off-topic posts even with `result_type: link` and `subreddit:`/
+boolean operators — the `subreddit:` filter is not a hard allow-list. Do not
+assume keyword hits are on-topic; review the `subreddit` field and post titles,
+and treat the exact keyword as a weak signal. If the returned set is dominated
+by unrelated communities, stop burning calls and either pull `new` posts from a
+known subreddit via `REDDIT_RETRIEVE_REDDIT_POST` or accept zero Reddit
+candidates for the run.
+
+**Parsing saved Reddit pull data:** when a `REDDIT_RETRIEVE_REDDIT_POST` batch
+response is saved to a remote file, POST data lives at
+`response.data.data.children[].data` (the `data` key is nested twice), not at
+`response.data.children` — parse the saved JSON with that path before filtering
+by `created_utc`.
 
 Do **not** call any Reddit write or account-mutation tools, including
 `REDDIT_CREATE_REDDIT_POST`, `REDDIT_POST_REDDIT_COMMENT`,
@@ -123,6 +165,11 @@ Reject:
 
 ## Reply drafting (when asked)
 
+- Draft each suggested reply as if `@alongubkin` or `@alien` were the one
+  posting it. Match their public X voice: direct, technical, founder /
+  practitioner, lightly wry when it fits — never corporate or marketing-speak.
+  Prefer whichever of the two fits the thread; do not sign the draft as them
+  or claim their identity in the text.
 - Sound like a thoughtful practitioner, not a social-media manager.
 - Be specific, concise, conversational, and useful without a sales pitch.
 - Add one idea per reply. Do not summarize the original post back to its author.
