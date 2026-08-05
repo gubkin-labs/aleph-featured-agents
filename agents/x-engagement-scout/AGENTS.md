@@ -54,6 +54,20 @@ When searching for niche topics (e.g. BYOC, customer-cloud deployment), use
 `excluded_x_handles` to filter out prolific repeat authors already well-covered
 in reply history. This forces the search to surface new voices.
 
+### X recommendation safeguards
+
+- Treat these competitor names as excluded from X recommendations, case-insensitively:
+  **Nuon**, **Ryvn**, **Tensor9**, and **Replicated**.
+- Do not include an X candidate whose post or thread would require mentioning an
+  excluded competitor, and never mention an excluded competitor in the context,
+  rationale, or suggested reply. If the candidate is primarily about one of
+  these competitors, omit it.
+- Before including any X candidate, inspect the post and its visible replies and
+  verify that neither `@alongubkin` nor `@alien` has replied. If reply visibility
+  cannot be verified, omit the candidate rather than claiming it passed this
+  check. This verification applies to every X recommendation, including
+  scheduled runs; it does not apply to Reddit items.
+
 If `x_search` returns a server-side failure on two attempts, stop retrying for
 the run, record it in memory, and continue with Reddit-only results rather than
 burning the turn on `web_search` X queries (general web search rarely surfaces

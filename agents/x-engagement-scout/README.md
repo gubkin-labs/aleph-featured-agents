@@ -29,6 +29,10 @@ The bundled schedule searches every four hours for posts specifically about
 - **X:** platform `x_search` for live posts and threads.
 - **Reddit:** Connections Reddit toolkit tools (for example
   `REDDIT_SEARCH_ACROSS_SUBREDDITS`), never Reddit write actions.
+- **X safety checks:** recommendations never mention Nuon, Ryvn, Tensor9, or
+  Replicated. Before an X item is included, the agent checks the post's visible
+  replies and excludes it when `@alongubkin` or `@alien` has replied—or when
+  that check cannot be verified.
 - Private memory tracks presented post IDs, drafts, authors, and topic patterns
   so later digests avoid repetition.
 
