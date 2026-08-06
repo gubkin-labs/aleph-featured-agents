@@ -1,4 +1,0 @@
-[[schedules]]
-cron = "0 9 * * *"
-markdown = "Run the daily Aleph CMO workflow in AGENTS.md. Start from durable memory. Use GitHub only for public docs and blog posts in gubkin-labs/project10-frontend; never access other repositories, internal knowledge, application code, infrastructure, or analytics systems. Research only enough to identify a differentiated, evidence-backed topic for Aleph's ICP, and never invent traffic or conversion metrics. If there is no strong topic, or an Aleph CMO blog PR is already open, report the skip reason and update memory. Otherwise create at most one focused Markdown blog-post PR against gubkin-labs/project10-frontend's default branch. Never merge, deploy, change configuration, or modify files outside content/blog/. Update memory before the final report."
-timezone = "UTC"

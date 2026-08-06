@@ -6,12 +6,8 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 
 1. Fork or clone this repository.
 2. Create a **user** or **organization** API key in Aleph (Settings → API keys).
-3. Add repository secrets:
-   - `ALEPH_API_KEY` (required)
-   - `ALEPH_API_URL` (optional; defaults to `https://api.aleph-agent.com`)
-   - After sync, connect **GitHub** on the Aleph CMO agent's Connections page
-     in the featured-agent organization (`aleph-featured-agents-org`). The
-     agent no longer uses a vault `GH_TOKEN`.
+3. Add repository secret `ALEPH_API_KEY`. The workflow targets production
+   (`https://api.aleph-agent.com`).
 4. Give every `aleph.json` a permanent UUID `agentId`. The manifest is the
    source of truth: first sync creates that exact ID and later runs update it.
    After the first successful sync, `versionId` is stamped automatically; keep
@@ -22,7 +18,7 @@ Public agent sources for [Aleph](https://www.aleph-agent.com). Each folder under
 
 ```bash
 cp .env.example .env
-# set ALEPH_API_KEY (and optional ALEPH_API_URL)
+# set ALEPH_API_KEY
 pnpm install
 pnpm run sync
 ```
@@ -108,7 +104,6 @@ Channels (Discord / Telegram) are **not** bundle files. Connect them in the Alep
 | `community-moderator` | Mod drafts + daily norms digest for communities |
 | `support-triage` | Categorize customer messages and draft replies |
 | `team-standup` | Weekday async standup prompt + afternoon digest |
-| `x-engagement-scout` | Recent X + Reddit posts on a topic; bundled schedule hunts BYOC conversations every four hours |
 | `discord-conversation-starter` | New messages in a selected Discord channel become contextual Aleph conversation turns |
 
 All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Channels page after clone.

@@ -42,7 +42,7 @@ jobs:
       - name: Verify agent identities
         env:
           ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
-          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
+          ALEPH_API_URL: https://api.aleph-agent.com
         run: |
           set -euo pipefail
           pnpm dlx @gubkin-labs/aleph-cli@latest agents sync agents --dry-run --no-enable
@@ -50,7 +50,7 @@ jobs:
       - name: Sync agents
         env:
           ALEPH_API_KEY: ${{ secrets.ALEPH_API_KEY }}
-          ALEPH_API_URL: ${{ secrets.ALEPH_API_URL }}
+          ALEPH_API_URL: https://api.aleph-agent.com
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
         run: pnpm run sync
