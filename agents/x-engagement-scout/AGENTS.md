@@ -29,6 +29,8 @@ On a scheduled scout or when asked to find posts:
 
 4. Remove anything already recorded in reply history. Avoid authors, topics,
    and angles overrepresented in recent patterns when alternatives exist.
+   Apply the engagement reject rules in Editorial criteria (zero likes /
+   OP-only replies) before ranking.
 
 5. Rank remaining candidates and return up to **three** strong posts (any mix
    of X and Reddit). One or two high-confidence results are a successful run.
@@ -75,13 +77,16 @@ the most overrepresented authors first.
   handles (up to 10). The response provides each post's full content plus its
   visible reply count and whether the target users replied. If the objective's
   response does not surface reply visibility for a candidate, run this targeted
-  fetch before including it.
+  fetch before including it. Use the same pass to capture like count and
+  visible replier usernames so the zero-likes and OP-only-replies reject rules
+  below can be applied.
 
   **Objective phrasing that works:** when fetching candidate posts for the
   reply check, phrase the objective so the engine *prints the posts themselves*,
-  e.g. "For each post print the full text, the canonical status URL, the visible
-  reply count, and the usernames of the visible repliers — specifically flag
-  whether @alongubkin or @alien appears". An objective that only asks to check
+  e.g. "For each post print the full text, the canonical status URL, the like
+  count, the visible reply count, and the usernames of the visible repliers —
+  specifically flag whether @alongubkin or @alien appears, and whether every
+  visible replier is the original author". An objective that only asks to check
   for @alongubkin/@alien activity returns an account-inactivity summary for
   those handles and no candidate content, so reply visibility stays unverified
   and the candidate must be omitted.
@@ -101,7 +106,8 @@ Reddit discovery uses the connected **Reddit** toolkit tools. Prefer:
 - `REDDIT_RETRIEVE_REDDIT_POST` — pull recent posts from a specific subreddit
   (`sort` = `new` or `hot`) when you know the community.
 - `REDDIT_RETRIEVE_SPECIFIC_COMMENT` / `REDDIT_RETRIEVE_POST_COMMENTS` — only
-  when you need more context for a candidate you already selected.
+  when you need more context for a candidate you already selected, or to verify
+  that visible comments are not all from the original author.
 
 For niche topics where the exact keyword returns zero results (e.g. "BYOC" on
 Reddit mostly returns guitar-pedal and LAN-gaming noise), search for the
@@ -110,13 +116,19 @@ vendor-managed-in-customer-infra), data-residency constraints, or enterprise
 self-hosting in targeted subreddits (r/cybersecurity, r/SaaS, r/devops,
 r/platformengineering, r/AI_Agents).
 
-**KEYWORD-EXCEPTION (run 10, 2026-08-05):** the literal "BYOC" keyword is not
-always dead on Reddit — in tech-evaluation/observability communities it surfaced
-a genuinely on-topic post (r/Observability "eBPF, BYOC, ClickHouse, Telemetry
-Pipelines: Which Ones Are Actually Worth It?"). Add r/Observability to the
-targeted subreddit list for BYOC/customer-cloud runs, and try the literal
+**KEYWORD-EXCEPTION (runs 10-12, 2026-08-05/06):** the literal "BYOC" keyword
+is not always dead on Reddit — in tech-evaluation/observability communities it
+surfaced a genuinely on-topic post (r/Observability "eBPF, BYOC, ClickHouse,
+Telemetry Pipelines: Which Ones Are Actually Worth It?"). Add r/Observability
+to the targeted subreddit list for BYOC/customer-cloud runs, and try the literal
 keyword in subreddits that evaluate vendor tech stacks before falling back to
-adjacent-problem queries.
+adjacent-problem queries. r/Observability is now the most reliable Reddit
+surface for BYOC/self-hosted-ops discussions (runs 10-12); the other targeted
+subreddits (r/SaaS, r/cybersecurity, r/platformengineering, r/AI_Agents) have
+recently returned zero new BYOC-relevant results, so pull `new` posts there
+only when energy permits. Note the X BYOC window is thinning: most BYOC hits are
+excluded competitors (Nuon), history, or promo/repeat accounts — lean on
+`excluded_x_handles` and accept a single strong X result as a successful run.
 
 **Reddit search noise fallback:** `REDDIT_SEARCH_ACROSS_SUBREDDITS` can return a
 high fraction of off-topic posts even with `result_type: link` and `subreddit:`/
@@ -155,6 +167,8 @@ Prefer a post when:
 - It was posted within the requested window and is still an active conversation.
 - The original post exposes enough context to summarize or draft responsibly.
 - The author and discussion appear credible.
+- It has real third-party engagement (likes / upvotes from others, or replies
+  from people other than the original author).
 
 Reject:
 
@@ -162,6 +176,14 @@ Reject:
 - Stale posts, reposts, duplicates, or posts already covered in memory.
 - Opportunities that require inventing experience, metrics, customers, or
   personal relationships.
+- **Zero likes / zero upvotes:** omit an X post with **0 likes**, and a Reddit
+  post with **score ≤ 1** (Reddit’s self-upvote alone does not count as
+  engagement). If like/score visibility cannot be verified for a candidate,
+  omit it rather than guessing.
+- **OP-only replies:** omit a post when every visible reply/comment is from the
+  original author (self-thread / talking to themselves), including the case
+  where the only comments are from that same person. If visible repliers
+  cannot be checked, omit the candidate.
 
 ## Reply drafting (when asked)
 
