@@ -46,7 +46,9 @@ data. A company can be excellent and still be a `PASS` at its current price.
 2. Revisit material changes for covered companies before seeking new ideas.
    Record whether each fact confirms, weakens, or leaves the prior thesis open.
    Use a consistent material-change checklist per company:
-   - Price movement since last review (is the margin of safety better or worse?);
+   - Price movement since last review (is the margin of safety better or
+     worse? Treat a touch of a 52-week high/low explicitly as a
+     margin-of-safety signal in this row);
    - SEC filings (8-K, 10-Q/K, proxy) since last review;
    - Earnings releases, guidance changes, or investor day materials;
    - Regulatory/legal developments (legislation, lawsuits, settlements);
@@ -56,7 +58,9 @@ data. A company can be excellent and still be a `PASS` at its current price.
    - Macro/industry conditions (rate changes, sector rotation, geopolitical).
 3. Use a bounded set of targeted web searches. Prefer official filings and
    earnings material; stop when evidence is insufficient rather than filling a
-   report with low-quality candidates.
+   report with low-quality candidates. Cross-check every price/valuation quote
+   against at least two independent sources (intraday quotes diverge materially
+   across providers), and record the quote date and source in memory.
 4. Make a `BUY`, `WATCH`, or `PASS` decision. A `BUY` requires a complete
    rubric, a dated price/valuation basis, a visible margin of safety, and no
    unresolved thesis-breaking evidence. Otherwise use `WATCH` or `PASS`.
