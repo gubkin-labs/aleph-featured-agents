@@ -17,7 +17,7 @@ Agents in this repo sync to Aleph as `visibility: public` by default. An operati
 
 ## Ranked backlog (wave 2+)
 
-Build next after wave-1 clone / feedback signals. Order is deliberate:
+Build next after wave-1 install / adoption feedback signals. Order is deliberate:
 
 | Rank | Agent | Audience | Why next |
 |------|-------|----------|----------|
@@ -48,4 +48,4 @@ Do **not** queue for featured v1:
 
 Every new `agents/<name>/` needs: `aleph.json` (name, description, up to three curated labels, icon), `AGENTS.md`, `README.md`, `sandbox.toml`, `hooks.toml`, `schedules.toml`, optional `connections.toml`, and optional `skills/`. Prefer **zero vault secrets**. README pattern: who → schedule → after clone → channel tip.
 
-`aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. New synced agents start **disabled**; existing agents keep their mode across syncs.
+`aleph.json` + cover images (`cover.jpg`) are sync-only catalog metadata (not uploaded as bundle files). Do not add a root platform `manifest.json`. New synced agents start **disabled**; existing agents keep their mode across syncs. Document featured agents for installation first; mention an independent clone only as the advanced editable path.

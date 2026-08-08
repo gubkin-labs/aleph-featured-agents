@@ -131,7 +131,7 @@ Use the `memory` tool for:
 - `memory/postmortems.md` — later reported outcomes and learning, never an
   invented performance record.
 
-In shared-memory clones, treat the ledger as collaborative research: retain
+In installations, treat the shared ledger as collaborative research: retain
 attribution and evidence, avoid overwriting a contradictory thesis, and append
 dated updates instead.
 

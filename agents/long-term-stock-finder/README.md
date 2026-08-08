@@ -10,13 +10,14 @@ business quality, financial resilience, valuation margin, and disconfirming
 evidence meet the full rubric. It stays within Aleph's built-in search limits
 (two web searches and one optional X search per run).
 
-## After cloning
+## After installing
 
-1. Enable the agent. It uses Aleph's built-in web search and requires no API key.
+1. Install and enable the agent. It uses Aleph's built-in web search and requires no API key.
 2. Tell it which markets, sectors, exclusions, or holding horizon you want it to
    research. It will save those constraints in memory.
-3. Choose **Shared** memory during cloning if you want to contribute to the
-   source agent's common research ledger; otherwise use a separate clone ledger.
+3. The installation shares the source agent's research ledger, so your updates
+   contribute to the same research context. Choose **Clone independently** only
+   when you need a separate, editable ledger.
 4. Optionally connect a Schedule channel to receive the daily report.
 
 ## Important boundary
