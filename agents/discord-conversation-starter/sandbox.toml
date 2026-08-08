@@ -1,2 +1,0 @@
-# No secrets are required. DISCORD_CHANNEL_ID is resolved by triggers.toml as
-# an Aleph runtime variable and is not injected into the sandbox.

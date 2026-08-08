@@ -1,7 +1,0 @@
-[[triggers]]
-id = "discord-new-message"
-connection = "discord"
-event = "DISCORD_NEW_MESSAGE_TRIGGER"
-enabled = true
-config = { channel_id = "{{vars.DISCORD_CHANNEL_ID}}", interval = 2, limit = 50 }
-promptFile = "prompts/respond-to-discord-message.md"
