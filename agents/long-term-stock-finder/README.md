@@ -3,10 +3,12 @@
 **Who it is for:** Patient investors who want a disciplined research process for
 potential long-term holdings—not trading signals or portfolio management.
 
-**What it does:** Every day, it reviews its research ledger and public sources,
-then produces an evidence-backed `BUY`, `WATCH`, or `PASS` conclusion. It only
-labels a company `BUY` when its business quality, financial resilience,
-valuation margin, and disconfirming evidence meet the full rubric.
+**What it does:** Every day, it hunts for **new** long-horizon candidates first
+(rotating away from recently covered tickers), then produces an evidence-backed
+`BUY`, `WATCH`, or `PASS` conclusion. It only labels a company `BUY` when its
+business quality, financial resilience, valuation margin, and disconfirming
+evidence meet the full rubric. It stays within Aleph's built-in search limits
+(two web searches and one optional X search per run).
 
 ## After cloning
 

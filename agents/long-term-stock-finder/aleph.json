@@ -1,7 +1,7 @@
 {
   "agentId": "0de9aba6-6bda-4d68-a6f8-f3efbea067fd",
   "name": "Long-Term Stock Finder",
-  "description": "Daily, evidence-backed long-term stock research with cautious BUY, WATCH, or PASS conclusions and a shared thesis ledger.",
+  "description": "Daily hunt for new long-horizon equity opportunities with cautious BUY, WATCH, or PASS calls and a shared thesis ledger that rotates coverage.",
   "labels": [
     "Trading",
     "Research"
