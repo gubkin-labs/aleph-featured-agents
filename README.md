@@ -90,9 +90,14 @@ Every agent folder must include:
   latest version. Changing manifest metadata creates a version even when runtime
   files are unchanged; changing only `agentId` or `versionId` does not
 
-Do **not** include `memory/`, `conversations/`, root platform `manifest.json`, or `.agents/` — those paths are reserved by Aleph. Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
+Use nested `memory/**/*.md` files for durable shared agent knowledge. They are
+ordinary versioned files: installed runs may change them, public-agent memory is
+publicly readable, and old contents remain in version history. Never store
+secrets, credentials, personal data, transcripts, or hidden reasoning there.
+Do **not** include `conversations/`, root platform `manifest.json`, or `.agents/`.
+Use **`aleph.json`** for catalog metadata instead (it is sync-only and never uploaded as a version file).
 
-Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels** after you install and enable an agent. Installations share source memory and follow the source owner's live harness; their permissions and runtime state remain local. Choose an independent clone only when you need an editable fork that does not receive source updates.
+Channels (Discord / Telegram) are **not** bundle files. Connect them in the Aleph UI under **Channels** after you install and enable an agent. Installations follow the source owner's live harness and may publish shared `memory/` changes through agent runs; their configuration and conversations remain local. Runtime memory versions advance the live pin, so pull and commit them before the next Git sync. Choose an independent clone only when you need an editable fork that does not receive source updates.
 
 ## Featured agents (wave 1)
 
