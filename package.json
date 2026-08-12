@@ -12,6 +12,6 @@
     "sync": "pnpm dlx @gubkin-labs/aleph-cli@latest agents sync agents --no-enable"
   },
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   }
 }
