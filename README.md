@@ -31,7 +31,7 @@ User API keys publish personal agents. Organization API keys publish agents into
 agents/
   weather/
     aleph.json             # identity + catalog metadata
-    cover.jpg              # catalog cover (synced to agent iconUrl via jsDelivr)
+    cover.jpg              # catalog cover (uploaded to Aleph by the CLI)
     AGENTS.md …
   morning-brief/
   …
@@ -62,7 +62,7 @@ Every agent folder must include:
 | `hooks.toml` | `sessionStart` / `sessionEnd` hooks |
 | `schedules.toml` | Cron schedules (minimum interval: 1 hour) |
 | `skills/` | Optional [Agent Skills](https://agentskills.io) |
-| `cover.jpg` (or path in `aleph.json`) | Catalog cover photo; sync sets `agents.iconUrl` via jsDelivr |
+| `cover.jpg` (or path in `aleph.json`) | Catalog cover photo; sync uploads it to Aleph-managed storage |
 
 ### `aleph.json` example
 
@@ -80,11 +80,10 @@ Every agent folder must include:
 
 - `agentId` — required permanent UUID; sync creates or updates this exact agent and never falls back to display-name matching
 - `versionId` — optional until first sync, then required for existing remotes; stamped by push/sync/pull and excluded from change detection. If sync/CI says the live pin differs, run `aleph agents pull` (repo root) or `aleph agents pull agents/<name>` so Git gets the live bundle files too — do not only edit `versionId`
-- `icon` — relative image file inside the agent folder (excluded from the runtime bundle upload); prefer a 16:9 photo (~1600×900)
-- `iconUrl` — optional absolute URL override (skips GitHub/jsDelivr resolution)
+- `icon` — relative JPEG, PNG, or WebP file inside the agent folder (uploaded separately and excluded from the runtime bundle, maximum 5 MB); prefer a 16:9 photo (~1600×900)
+- `iconUrl` — optional absolute URL override that skips the image upload
 - `labels` — optional array of up to three unique marketplace categories: `Marketing`, `Production`, `FinOps`, `Engineering`, `Sales`, `Research`, `Lifestyle`, `Productivity`, or `Trading`
 - `visibility` — optional `public` (default) or `private`; private agents are not listed in the public catalog
-- Sync pins icons to `GITHUB_SHA` in CI (`https://cdn.jsdelivr.net/gh/gubkin-labs/aleph-featured-agents@<sha>/agents/...`)
 - **New** synced agents start **disabled** — users inspect and install from the catalog, then enable their own installation. Existing agents keep their enabled/disabled state across syncs.
 - An identical runtime bundle and identical `aleph.json` metadata reuse the
   latest version. Changing manifest metadata creates a version even when runtime
