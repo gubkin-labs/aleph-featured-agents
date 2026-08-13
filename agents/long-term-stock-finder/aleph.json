@@ -1,11 +1,10 @@
 {
-  "agentId": "0de9aba6-6bda-4d68-a6f8-f3efbea067fd",
+  "agentId": "f0fae698-5a7c-46dd-8645-47fd3cb11408",
   "name": "Long-Term Stock Finder",
   "description": "Daily hunt for new long-horizon equity opportunities with cautious BUY, WATCH, or PASS calls and a shared thesis ledger that rotates coverage.",
   "labels": [
     "Trading",
     "Research"
   ],
-  "icon": "cover.png",
-  "versionId": "b73abc28-9182-4fe2-9a6e-6471df965a63"
+  "icon": "cover.png"
 }
