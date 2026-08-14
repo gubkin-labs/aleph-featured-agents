@@ -45,7 +45,7 @@ Add a new agent by creating `agents/<name>/` with a valid Aleph bundle **plus**
 `aleph.json` (and usually a cover image), then push. `agentId` is required; if
 it is missing, the CLI prints a generated UUID and the exact field to add.
 The `agents/` folders are the source of truth: removing a previously
-synchronized folder archives its catalog agent. If it was already absent on
+synchronized folder permanently deletes its catalog agent. If it was already absent on
 Aleph, sync prints a warning and continues. See [CATALOG.md](CATALOG.md) for
 the ranked backlog and packaging rules.
 
@@ -115,5 +115,5 @@ All prefer **zero vault secrets**; connect Discord/Telegram from the Aleph Chann
 ## Cache
 
 Every manifest owns its agent identity. Local sync writes `.aleph/state.json`
-(gitignored) only so a later sync can archive an agent when its bundle folder
+(gitignored) only so a later sync can delete an agent when its bundle folder
 is removed. Cache loss cannot change, discover, or replace an agent ID.
